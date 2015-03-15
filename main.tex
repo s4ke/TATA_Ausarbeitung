@@ -277,7 +277,7 @@ Or in written form:\\
 
 \chapter*{Determinization}
 
-Our definition of Finite Tree Automata (FTA) is based on Non Deterministic Tree Automata (NFTA) and we will now have a look at how we can determinize these automata as we need our automata to be deterministic later in this draft. But first we have to define what this means in the context of TFAs.
+Our definition of Finite Tree Automata (FTA) is based on Non Deterministic Tree Automata (NFTA) and we will now take a look at how we can determinize these automata as we need our automata to be deterministic later in this draft. But first we have to define what this means in the context of FTAs.
 
 \begin{definition}{Deterministic Finite Tree Automaton}
 
@@ -354,7 +354,24 @@ For this, we have to prove that the meta-states \(s \in Q_d\) are built correctl
 	
 \end{proof}
 
-\textcolor{red}{example for Determinization}
+\newcommand{\automatonDefinition} {
+	\(A = (Q, \Sigma, Q_f, \Delta)\)
+}
+
+	\begin{example}{Running the DET algorithm}
+		\\
+		consider this NFTA that accepts unordered lists (HTML-style):\\
+		\automatonDefinition\\
+		\(\Sigma = \{ul, li, text, empty\}\)\\
+		\(Q = \{q_{ul}, q_{li1}, q_{li2}, q_{text}, q_{empty}\}\)\\
+		\(Q_f = \{q_{ul}\}\)\\
+		\(\Delta = \{
+		ul(q_{li1},q_{li2}) \rightarrow q_{ul}, ul(q_{li2},q_{li1}) \rightarrow q_{ul}, \newline
+		li(q_{text},q_{text}) \rightarrow q_{li1}, li(q_{text}, q_{text}) \rightarrow q_{li2}\newline
+		text \rightarrow q_{text}, empty \rightarrow q_{empty}, \newline
+		\epsilon(q_{empty}) \rightarrow q_{text}
+		\}\)
+	\end{example}
 
 \newpage
 
