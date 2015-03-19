@@ -1,0 +1,773 @@
+This is pdfTeX, Version 3.1415926-2.5-1.40.14 (MiKTeX 2.9 64-bit) (preloaded format=pdflatex 2014.1.22)  22 JAN 2014 19:40
+entering extended mode
+**C:/Users/Martin/Desktop/TATA/simple-nfa.tex
+(C:/Users/Martin/Desktop/TATA/simple-nfa.tex
+LaTeX2e <2011/06/27>
+Babel <v3.8m> and hyphenation patterns for english, afrikaans, ancientgreek, ar
+abic, armenian, assamese, basque, bengali, bokmal, bulgarian, catalan, coptic, 
+croatian, czech, danish, dutch, esperanto, estonian, farsi, finnish, french, ga
+lician, german, german-x-2013-05-26, greek, gujarati, hindi, hungarian, iceland
+ic, indonesian, interlingua, irish, italian, kannada, kurmanji, latin, latvian,
+ lithuanian, malayalam, marathi, mongolian, mongolianlmc, monogreek, ngerman, n
+german-x-2013-05-26, nynorsk, oriya, panjabi, pinyin, polish, portuguese, roman
+ian, russian, sanskrit, serbian, slovak, slovenian, spanish, swedish, swissgerm
+an, tamil, telugu, turkish, turkmen, ukenglish, ukrainian, uppersorbian, usengl
+ishmax, welsh, loaded.
+("C:\Program Files\MiKTeX 2.9\tex\latex\base\article.cls"
+Document Class: article 2007/10/19 v1.4h Standard LaTeX document class
+("C:\Program Files\MiKTeX 2.9\tex\latex\base\size11.clo"
+File: size11.clo 2007/10/19 v1.4h Standard LaTeX file (size option)
+)
+\c@part=\count79
+\c@section=\count80
+\c@subsection=\count81
+\c@subsubsection=\count82
+\c@paragraph=\count83
+\c@subparagraph=\count84
+\c@figure=\count85
+\c@table=\count86
+\abovecaptionskip=\skip41
+\belowcaptionskip=\skip42
+\bibindent=\dimen102
+)
+("C:\Program Files\MiKTeX 2.9\tex\latex\vaucanson-g\vaucanson-g.sty"
+Package: vaucanson-g 2008/10/27 package wrapper for VauCanSon-G v. 0.4
+
+("C:\Program Files\MiKTeX 2.9\tex\latex\base\ifthen.sty"
+Package: ifthen 2001/05/26 v1.1c Standard LaTeX ifthen package (DPC)
+)
+("C:\Program Files\MiKTeX 2.9\tex\latex\xcolor\xcolor.sty"
+Package: xcolor 2007/01/21 v2.11 LaTeX color extensions (UK)
+
+("C:\Program Files\MiKTeX 2.9\tex\latex\00miktex\color.cfg"
+File: color.cfg 2007/01/18 v1.5 color configuration of teTeX/TeXLive
+)
+Package xcolor Info: Package option `pst' ignored on input line 216.
+Package xcolor Info: Driver file: pdftex.def on input line 225.
+
+("C:\Program Files\MiKTeX 2.9\tex\latex\pdftex-def\pdftex.def"
+File: pdftex.def 2011/05/27 v0.06d Graphics/color for pdfTeX
+
+("C:\Program Files\MiKTeX 2.9\tex\generic\oberdiek\infwarerr.sty"
+Package: infwarerr 2010/04/08 v1.3 Providing info/warning/error messages (HO)
+)
+("C:\Program Files\MiKTeX 2.9\tex\generic\oberdiek\ltxcmds.sty"
+Package: ltxcmds 2011/11/09 v1.22 LaTeX kernel commands for general use (HO)
+)
+\Gread@gobject=\count87
+)
+Package xcolor Info: Model `cmy' substituted by `cmy0' on input line 1337.
+Package xcolor Info: Model `hsb' substituted by `rgb' on input line 1341.
+Package xcolor Info: Model `RGB' extended on input line 1353.
+Package xcolor Info: Model `HTML' substituted by `rgb' on input line 1355.
+Package xcolor Info: Model `Hsb' substituted by `hsb' on input line 1356.
+Package xcolor Info: Model `tHsb' substituted by `hsb' on input line 1357.
+Package xcolor Info: Model `HSB' substituted by `hsb' on input line 1358.
+Package xcolor Info: Model `Gray' substituted by `gray' on input line 1359.
+Package xcolor Info: Model `wave' substituted by `hsb' on input line 1360.
+)
+("C:\Program Files\MiKTeX 2.9\tex\generic\vaucanson-g\VCColor-names.def")
+("C:\Program Files\MiKTeX 2.9\tex\latex\pstricks\pstricks.sty"
+Package: pstricks 2013/12/12 v0.60 LaTeX wrapper for `PSTricks' (RN,HV)
+
+("C:\Program Files\MiKTeX 2.9\tex\generic\oberdiek\ifpdf.sty"
+Package: ifpdf 2011/01/30 v2.3 Provides the ifpdf switch (HO)
+Package ifpdf Info: pdfTeX in PDF mode is detected.
+)
+("C:\Program Files\MiKTeX 2.9\tex\generic\pstricks\base\pstricks.tex"
+("C:\Program Files\MiKTeX 2.9\tex\generic\xkeyval\pst-xkey.tex"
+File: pst-xkey.tex 2005/11/25 v1.6 PSTricks specialization of xkeyval (HA)
+
+("C:\Program Files\MiKTeX 2.9\tex\latex\xkeyval\xkeyval.sty"
+Package: xkeyval 2012/10/14 v2.6b package option processing (HA)
+
+("C:\Program Files\MiKTeX 2.9\tex\generic\xkeyval\xkeyval.tex"
+\XKV@toks=\toks14
+\XKV@tempa@toks=\toks15
+\XKV@depth=\count88
+File: xkeyval.tex 2012/10/14 v2.6b key=value parser (HA)
+
+("C:\Program Files\MiKTeX 2.9\tex\generic\xkeyval\keyval.tex"))))
+("C:\Program Files\MiKTeX 2.9\tex\generic\pstricks\base\pst-fp.tex"
+`pst-fp' v0.05, 2010/01/17 (hv)
+\pstFP@xs=\count89
+\pstFP@xia=\count90
+\pstFP@xib=\count91
+\pstFP@xfa=\count92
+\pstFP@xfb=\count93
+\pstFP@rega=\count94
+\pstFP@regb=\count95
+\pstFP@regs=\count96
+\pstFP@times=\count97
+)
+("C:\Program Files\MiKTeX 2.9\\tex\generic\pgf\utilities\pgfutil-common.tex"
+\pgfutil@everybye=\toks16
+)
+("C:\Program Files\MiKTeX 2.9\tex\generic\pgf\utilities\pgfkeys.code.tex"
+\pgfkeys@pathtoks=\toks17
+\pgfkeys@temptoks=\toks18
+
+("C:\Program Files\MiKTeX 2.9\tex\generic\pgf\utilities\pgfkeysfiltered.code.te
+x"
+\pgfkeys@tmptoks=\toks19
+)) ("C:\Program Files\MiKTeX 2.9\tex\generic\pgf\utilities\pgffor.code.tex"
+\pgffor@iter=\dimen103
+\pgffor@skip=\dimen104
+\pgffor@stack=\toks20
+\pgffor@toks=\toks21
+)
+\psLoopIndex=\count98
+
+`PSTricks' v2.49b  <2013/12/21> (tvz)
+\pst@dima=\dimen105
+\pst@dimb=\dimen106
+\pst@dimc=\dimen107
+\pst@dimd=\dimen108
+\pst@dimg=\dimen109
+\pst@dimh=\dimen110
+\pst@dimm=\dimen111
+\pst@dimn=\dimen112
+\pst@dimo=\dimen113
+\pst@dimp=\dimen114
+\pst@hbox=\box26
+\pst@ibox=\box27
+\pst@boxg=\box28
+\pst@cnta=\count99
+\pst@cntb=\count100
+\pst@cntc=\count101
+\pst@cntd=\count102
+\pst@cntg=\count103
+\pst@cnth=\count104
+\pst@cntm=\count105
+\pst@cntn=\count106
+\pst@cnto=\count107
+\pst@cntp=\count108
+\@zero=\count109
+\pst@toks=\toks22
+("C:\Program Files\MiKTeX 2.9\tex\generic\pstricks\base\pstricks.con")
+\psunit=\dimen115
+\psxunit=\dimen116
+\psyunit=\dimen117
+\pst@C@@rType=\count110
+\pslinewidth=\dimen118
+\psk@startLW=\dimen119
+\psk@endLW=\dimen120
+\pst@customdefs=\toks23
+\pslinearc=\dimen121
+\pst@symbolStep=\dimen122
+\pst@symbolWidth=\dimen123
+\pst@symbolLinewidth=\dimen124
+\everypsbox=\toks24
+\psframesep=\dimen125
+\pslabelsep=\dimen126
+\sh@wgridXunit=\dimen127
+\sh@wgridYunit=\dimen128
+\pst@shift=\dimen129
+)
+File: pstricks.tex 2013/12/21 v2.49b `PSTricks' (tvz,hv)
+
+("C:\Program Files\MiKTeX 2.9\tex\generic\pstricks\base\pst-fp.tex")
+File: pst-fp.tex 2013/12/21 v2.49b `PST-fp' (hv)
+)
+("C:\Program Files\MiKTeX 2.9\tex\latex\pst-node\pst-node.sty"
+Package: pst-node 2012/09/18 v1.01 LaTeX wrapper for `pst-node' (HV)
+Package: pst-node 2010/04/22 package wrapper for pst-node.tex
+
+("C:\Program Files\MiKTeX 2.9\tex\generic\pst-node\tex\pst-node.tex"
+ v1.30, 2013/09/17
+\psrow=\count111
+\pscol=\count112
+\psmatrixcnt=\count113
+\psrowsep=\skip43
+\pscolsep=\skip44
+\pst@args=\count114
+\num@pts=\count115
+\pst@argcnt=\count116
+)
+File: pst-node.tex 2013/09/17 1.30 `pst-node' (tvz,hv)
+)
+("C:\Program Files\MiKTeX 2.9\tex\latex\pst-plot\pst-plot.sty"
+Package: pst-plot 2011/06/05 v1.00 LaTeX wrapper for `pst-plot' (HV)
+
+("C:\Program Files\MiKTeX 2.9\tex\latex\xkeyval\pst-xkey.sty"
+Package: pst-xkey 2005/11/25 v1.6 package wrapper for pst-xkey.tex (HA)
+)
+("C:\Program Files\MiKTeX 2.9\tex\latex\multido\multido.sty"
+Package: multido 2004/05/17 package wrapper for PSTricks `multido.tex', (HV/RN)
+
+
+("C:\Program Files\MiKTeX 2.9\tex\generic\multido\multido.tex"
+ v1.42, 2010/05/14 <tvz>
+\multido@count=\count117
+\multidocount=\count118
+\multido@stuff=\toks25
+)
+File: multido.tex 2010/05/14 v1.42 `multido' (tvz,hv)
+)
+Package: pst-plot 2011/04/13 package wrapper for pst-plot.tex (hv)
+
+("C:\Program Files\MiKTeX 2.9\tex\generic\pst-plot\pst-plot.tex"
+ v1.57, 2013/12/01 (tvz,hv)
+\pstRadUnit=\dimen130
+\pstRadUnitInv=\dimen131
+\pst@linecnt=\count119
+\RCD@file=\read1
+\psxlabelsep=\dimen132
+\psylabelsep=\dimen133
+\psk@subticksize=\dimen134
+\pst@xticksizeA=\dimen135
+\pst@xticksizeB=\dimen136
+\pst@xticksizeC=\dimen137
+\pst@yticksizeA=\dimen138
+\pst@yticksizeB=\dimen139
+\pst@yticksizeC=\dimen140
+\@digitcounter=\count120
+\psk@llx=\dimen141
+\psk@lly=\dimen142
+\psk@urx=\dimen143
+\psk@ury=\dimen144
+\pst@xunit=\dimen145
+\pst@yunit=\dimen146
+)
+File: pst-plot.tex 2013/12/01 1.57 `pst-plot' (tvz,hv)
+)
+("C:\Program Files\MiKTeX 2.9\tex\latex\pst-coil\pst-coil.sty"
+Package: pst-coil 2010/02/01 package wrapper for pst-coil.tex (hv)
+
+("C:\Program Files\MiKTeX 2.9\tex\generic\pst-coil\pst-coil.tex"
+ v1.57, 2013/12/01
+("C:\Program Files\MiKTeX 2.9\tex\generic\pst-node\tex\pst-node.tex"))
+File: pst-coil.tex 2011/09/17 v1.06 `PST-coil' (tvz,hv)
+)
+("C:\Program Files\MiKTeX 2.9\tex\latex\pst-3d\pst-3d.sty"
+Package: pst-3d 2009/07/28 package wrapper for pst-3d.tex (hv)
+
+("C:\Program Files\MiKTeX 2.9\tex\generic\pst-3d\pst-3d.tex"
+`PST-3d' v1.11, 2010/02/14 (tvz))
+File: pst-3d.tex 2010/02/14 v1.11 `PST-3d' (hv)
+)
+("C:\Program Files\MiKTeX 2.9\tex\latex\tools\calc.sty"
+Package: calc 2007/08/22 v4.3 Infix arithmetic (KKT,FJ)
+\calc@Acount=\count121
+\calc@Bcount=\count122
+\calc@Adimen=\dimen147
+\calc@Bdimen=\dimen148
+\calc@Askip=\skip45
+\calc@Bskip=\skip46
+LaTeX Info: Redefining \setlength on input line 76.
+LaTeX Info: Redefining \addtolength on input line 77.
+\calc@Ccount=\count123
+\calc@Cskip=\skip47
+)
+("C:\Program Files\MiKTeX 2.9\tex\generic\vaucanson-g\Vaucanson-G.tex"
+\MediumStateDiameter=\skip48
+\SmallStateDiameter=\skip49
+\LargeStateDiameter=\skip50
+\VerySmallStateDiameter=\skip51
+\StateLineWidth=\skip52
+\EdgeLineWidth=\skip53
+\EdgeArrowWidth=\skip54
+\EdgeDblArrowWidth=\skip55
+\ZZSize=\skip56
+\EdgeOffset=\skip57
+\EdgeNodeSep=\skip58
+\VaucArcOffset=\skip59
+\LoopOffset=\skip60
+\LoopVarOffset=\skip61
+\TransLabelSep=\skip62
+\VertShiftH=\skip63
+LaTeX Font Info:    External font `cmex10' loaded for size
+(Font)              <10.95> on input line 206.
+LaTeX Font Info:    External font `cmex10' loaded for size
+(Font)              <8> on input line 206.
+LaTeX Font Info:    External font `cmex10' loaded for size
+(Font)              <6> on input line 206.
+\VertShiftD=\skip64
+\VertShift=\skip65
+\StateLineWid=\skip66
+\StateDiam=\skip67
+\VaucAOS=\skip68
+\VaucAOSdiag=\skip69
+\VariableStateIntDiam=\skip70
+\VariableStateWidth=\skip71
+\VariableStateITPos=\skip72
+\ExtraSpace=\skip73
+\EdgeLineWid=\skip74
+\EdgeArrowSZDim=\skip75
+\EdgeLineBord=\skip76
+\ZZSiZ=\skip77
+\EdgeOff=\skip78
+\VaucArcOff=\skip79
+\LoopOff=\skip80
+\LoopVarOff=\skip81
+\EdgeNodeSP=\skip82
+\TransLabelSP=\skip83
+\c@anglea=\count124
+\c@angleb=\count125
+)
+\VaucMinHeight=\skip84
+\VaucMaxHeight=\skip85
+
+("C:\Program Files\MiKTeX 2.9\tex\generic\vaucanson-g\VCPref-default.tex"))
+No file simple-nfa.aux.
+LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 3.
+LaTeX Font Info:    ... okay on input line 3.
+LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 3.
+LaTeX Font Info:    ... okay on input line 3.
+LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 3.
+LaTeX Font Info:    ... okay on input line 3.
+LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 3.
+LaTeX Font Info:    ... okay on input line 3.
+LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 3.
+LaTeX Font Info:    ... okay on input line 3.
+LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 3.
+LaTeX Font Info:    ... okay on input line 3.
+("C:\Program Files\MiKTeX 2.9\tex\context\base\supp-pdf.mkii"
+[Loading MPS to PDF converter (version 2006.09.02).]
+\scratchcounter=\count126
+\scratchdimen=\dimen149
+\scratchbox=\box29
+\nofMPsegments=\count127
+\nofMParguments=\count128
+\everyMPshowfont=\toks26
+\MPscratchCnt=\count129
+\MPscratchDim=\dimen150
+\MPnumerator=\count130
+\makeMPintoPDFobject=\count131
+\everyMPtoPDFconversion=\toks27
+)
+! Undefined control sequence.
+<recently read> \c@lor@to@ps 
+                             
+l.6 \State[q0]{(1,8)}{Q0}
+                          \State[q1]{(4,8)}{Q1}
+? we
+Type <return> to proceed, S to scroll future error messages,
+R to run without stopping, Q to run quietly,
+I to insert something, E to edit your file,
+1 or ... or 9 to ignore the next 1 to 9 tokens of input,
+H for help, X to quit.
+? r
+OK, entering \nonstopmode...
+! Undefined control sequence.
+\XC@usec@lor ...\expandafter \c@lor@to@ps #1#2\@@ 
+                                                  \else \expandafter \expand...
+l.6 \State[q0]{(1,8)}{Q0}
+                          \State[q1]{(4,8)}{Q1}
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+! Undefined control sequence.
+<recently read> \c@lor@to@ps 
+                             
+l.6 \State[q0]{(1,8)}{Q0}
+                          \State[q1]{(4,8)}{Q1}
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+! Undefined control sequence.
+\XC@usec@lor ...\expandafter \c@lor@to@ps #1#2\@@ 
+                                                  \else \expandafter \expand...
+l.6 \State[q0]{(1,8)}{Q0}
+                          \State[q1]{(4,8)}{Q1}
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+! Undefined control sequence.
+<recently read> \c@lor@to@ps 
+                             
+l.6 \State[q0]{(1,8)}{Q0}
+                          \State[q1]{(4,8)}{Q1}
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+! Undefined control sequence.
+\XC@usec@lor ...\expandafter \c@lor@to@ps #1#2\@@ 
+                                                  \else \expandafter \expand...
+l.6 \State[q0]{(1,8)}{Q0}
+                          \State[q1]{(4,8)}{Q1}
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+! Undefined control sequence.
+<recently read> \c@lor@to@ps 
+                             
+l.6 \State[q0]{(1,8)}{Q0} \State[q1]{(4,8)}{Q1}
+                                               
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+! Undefined control sequence.
+\XC@usec@lor ...\expandafter \c@lor@to@ps #1#2\@@ 
+                                                  \else \expandafter \expand...
+l.6 \State[q0]{(1,8)}{Q0} \State[q1]{(4,8)}{Q1}
+                                               
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+! Undefined control sequence.
+<recently read> \c@lor@to@ps 
+                             
+l.6 \State[q0]{(1,8)}{Q0} \State[q1]{(4,8)}{Q1}
+                                               
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+! Undefined control sequence.
+\XC@usec@lor ...\expandafter \c@lor@to@ps #1#2\@@ 
+                                                  \else \expandafter \expand...
+l.6 \State[q0]{(1,8)}{Q0} \State[q1]{(4,8)}{Q1}
+                                               
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+! Undefined control sequence.
+<recently read> \c@lor@to@ps 
+                             
+l.6 \State[q0]{(1,8)}{Q0} \State[q1]{(4,8)}{Q1}
+                                               
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+! Undefined control sequence.
+\XC@usec@lor ...\expandafter \c@lor@to@ps #1#2\@@ 
+                                                  \else \expandafter \expand...
+l.6 \State[q0]{(1,8)}{Q0} \State[q1]{(4,8)}{Q1}
+                                               
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+! Undefined control sequence.
+<recently read> \c@lor@to@ps 
+                             
+l.9 \EdgeL{Q0}{Q1}{1}
+                      \LoopN{Q0}{0}
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+! Undefined control sequence.
+\XC@usec@lor ...\expandafter \c@lor@to@ps #1#2\@@ 
+                                                  \else \expandafter \expand...
+l.9 \EdgeL{Q0}{Q1}{1}
+                      \LoopN{Q0}{0}
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+! Undefined control sequence.
+<recently read> \c@lor@to@ps 
+                             
+l.9 \EdgeL{Q0}{Q1}{1}
+                      \LoopN{Q0}{0}
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+! Undefined control sequence.
+\XC@usec@lor ...\expandafter \c@lor@to@ps #1#2\@@ 
+                                                  \else \expandafter \expand...
+l.9 \EdgeL{Q0}{Q1}{1}
+                      \LoopN{Q0}{0}
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+! Undefined control sequence.
+<recently read> \c@lor@to@ps 
+                             
+l.9 \EdgeL{Q0}{Q1}{1} \LoopN{Q0}{0}
+                                   
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+! Undefined control sequence.
+\XC@usec@lor ...\expandafter \c@lor@to@ps #1#2\@@ 
+                                                  \else \expandafter \expand...
+l.9 \EdgeL{Q0}{Q1}{1} \LoopN{Q0}{0}
+                                   
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+! Undefined control sequence.
+<recently read> \c@lor@to@ps 
+                             
+l.9 \EdgeL{Q0}{Q1}{1} \LoopN{Q0}{0}
+                                   
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+! Undefined control sequence.
+\XC@usec@lor ...\expandafter \c@lor@to@ps #1#2\@@ 
+                                                  \else \expandafter \expand...
+l.9 \EdgeL{Q0}{Q1}{1} \LoopN{Q0}{0}
+                                   
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+! Undefined control sequence.
+<recently read> \c@lor@to@ps 
+                             
+l.10 \EdgeL{Q1}{Q0}{1}
+                       \LoopN{Q1}{0}
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+! Undefined control sequence.
+\XC@usec@lor ...\expandafter \c@lor@to@ps #1#2\@@ 
+                                                  \else \expandafter \expand...
+l.10 \EdgeL{Q1}{Q0}{1}
+                       \LoopN{Q1}{0}
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+! Undefined control sequence.
+<recently read> \c@lor@to@ps 
+                             
+l.10 \EdgeL{Q1}{Q0}{1}
+                       \LoopN{Q1}{0}
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+! Undefined control sequence.
+\XC@usec@lor ...\expandafter \c@lor@to@ps #1#2\@@ 
+                                                  \else \expandafter \expand...
+l.10 \EdgeL{Q1}{Q0}{1}
+                       \LoopN{Q1}{0}
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+! Undefined control sequence.
+<recently read> \c@lor@to@ps 
+                             
+l.10 \EdgeL{Q1}{Q0}{1} \LoopN{Q1}{0}
+                                    
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+! Undefined control sequence.
+\XC@usec@lor ...\expandafter \c@lor@to@ps #1#2\@@ 
+                                                  \else \expandafter \expand...
+l.10 \EdgeL{Q1}{Q0}{1} \LoopN{Q1}{0}
+                                    
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+! Undefined control sequence.
+<recently read> \c@lor@to@ps 
+                             
+l.10 \EdgeL{Q1}{Q0}{1} \LoopN{Q1}{0}
+                                    
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+! Undefined control sequence.
+\XC@usec@lor ...\expandafter \c@lor@to@ps #1#2\@@ 
+                                                  \else \expandafter \expand...
+l.10 \EdgeL{Q1}{Q0}{1} \LoopN{Q1}{0}
+                                    
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+[1
+Non-PDF special ignored!
+Non-PDF special ignored!
+Non-PDF special ignored!
+Non-PDF special ignored!
+Non-PDF special ignored!
+Non-PDF special ignored!
+Non-PDF special ignored!
+
+
+Non-PDF special ignored!
+Non-PDF special ignored!
+Non-PDF special ignored!
+Non-PDF special ignored!
+Non-PDF special ignored!
+Non-PDF special ignored!
+Non-PDF special ignored!
+Non-PDF special ignored!
+Non-PDF special ignored!
+Non-PDF special ignored!
+Non-PDF special ignored!
+Non-PDF special ignored!
+Non-PDF special ignored!
+Non-PDF special ignored!
+Non-PDF special ignored!
+Non-PDF special ignored!{C:/ProgramData/MiKTeX/2.9/pdftex/config/pdftex.map}
+Non-PDF special ignored!
+Non-PDF special ignored!
+Non-PDF special ignored!
+Non-PDF special ignored!
+Non-PDF special ignored!
+Non-PDF special ignored!
+Non-PDF special ignored!
+Non-PDF special ignored!
+Non-PDF special ignored!
+Non-PDF special ignored!
+Non-PDF special ignored!
+Non-PDF special ignored!
+Non-PDF special ignored!
+Non-PDF special ignored!
+Non-PDF special ignored!
+Non-PDF special ignored!
+Non-PDF special ignored!
+Non-PDF special ignored!
+Non-PDF special ignored!
+Non-PDF special ignored!
+Non-PDF special ignored!
+Non-PDF special ignored!
+Non-PDF special ignored!
+Non-PDF special ignored!
+Non-PDF special ignored!
+Non-PDF special ignored!
+Non-PDF special ignored!
+Non-PDF special ignored!
+Non-PDF special ignored!
+Non-PDF special ignored!
+Non-PDF special ignored!
+Non-PDF special ignored!
+Non-PDF special ignored!
+Non-PDF special ignored!
+Non-PDF special ignored!
+Non-PDF special ignored!
+Non-PDF special ignored!
+Non-PDF special ignored!
+Non-PDF special ignored!
+Non-PDF special ignored!
+Non-PDF special ignored!
+Non-PDF special ignored!
+Non-PDF special ignored!
+Non-PDF special ignored!
+Non-PDF special ignored!
+Non-PDF special ignored!
+Non-PDF special ignored!
+Non-PDF special ignored!
+Non-PDF special ignored!
+Non-PDF special ignored!
+Non-PDF special ignored!
+Non-PDF special ignored!
+Non-PDF special ignored!
+Non-PDF special ignored!
+Non-PDF special ignored!
+Non-PDF special ignored!
+Non-PDF special ignored!
+Non-PDF special ignored!
+Non-PDF special ignored!
+Non-PDF special ignored!
+Non-PDF special ignored!
+Non-PDF special ignored!
+Non-PDF special ignored!
+Non-PDF special ignored!
+Non-PDF special ignored!
+Non-PDF special ignored!
+Non-PDF special ignored!
+Non-PDF special ignored!
+Non-PDF special ignored!
+Non-PDF special ignored!
+Non-PDF special ignored!
+Non-PDF special ignored!
+Non-PDF special ignored!
+Non-PDF special ignored!
+Non-PDF special ignored!
+Non-PDF special ignored!
+Non-PDF special ignored!
+Non-PDF special ignored!
+Non-PDF special ignored!
+Non-PDF special ignored!
+Non-PDF special ignored!
+Non-PDF special ignored!] (C:\Users\Martin\Desktop\TATA\simple-nfa.aux) ) 
+Here is how much of TeX's memory you used:
+ 5718 strings out of 493921
+ 85839 string characters out of 3147279
+ 191198 words of memory out of 3000000
+ 8961 multiletter control sequences out of 15000+200000
+ 6379 words of font info for 23 fonts, out of 3000000 for 9000
+ 841 hyphenation exceptions out of 8191
+ 44i,7n,59p,617b,467s stack positions out of 5000i,500n,10000p,200000b,50000s
+<C:/Pr
+ogram Files/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmmi10.pfb><C:/Program Fi
+les/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmr10.pfb>
+Output written on simple-nfa.pdf (1 page, 16272 bytes).
+PDF statistics:
+ 14 PDF objects out of 1000 (max. 8388607)
+ 0 named destinations out of 1000 (max. 500000)
+ 1 words of extra memory for PDF output out of 10000 (max. 10000000)
+

@@ -1,0 +1,12 @@
+\documentclass[11pt]{article}
+\usepackage{vaucanson-g}
+\begin{document}
+\begin{VCPicture}{(-1,6)(5,11)}
+%2 states
+\State[q0]{(1,8)}{Q0} \State[q1]{(4,8)}{Q1}
+%0 initial-final
+%4 transitions
+\EdgeL{Q0}{Q1}{1} \LoopN{Q0}{0}
+\EdgeL{Q1}{Q0}{1} \LoopN{Q1}{0}
+\end{VCPicture}
+\end{document}

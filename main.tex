@@ -13,11 +13,13 @@
 \usepackage{wasysym}
 \usepackage{listings}
 \usepackage[]{algorithm2e}
+\usepackage{caption}
 
 \usetikzlibrary{arrows,automata,positioning}
 
 %
 \begin{document}
+	
 %
 \frontmatter          % for the preliminaries
 %
@@ -96,7 +98,7 @@
 
 
 \chapter*{Introduction to Tree Languages}
-A good example for a tree language is the one consisting of boolean expressions for which an instance - if formatted in the right way - could look like this:
+A good example for a tree language is the one consisting of all binary boolean expressions evaluating to true, for which an instance - if formatted in the right way - could look like this:
 
 \begin{center}
 	\(and(or(false, true), or(true, true))\)\\
@@ -110,14 +112,14 @@ Just like for "normal" regular languages, it is of interest to know whether a gi
 
 \begin{definition}{\(\Sigma\)-tree \cite{automata-xml}}
 	\\
-	The set of \(\Sigma\)-trees \(T_\Sigma\) over the alphabet \(\Sigma\) is inductively defined as follows:
+	The set of \(\Sigma\)-trees \(T_\Sigma\) over the \textbf{alphabet \(\Sigma\)} is inductively defined as follows:
 	\begin{center}
 		1. every \(\sigma \in \Sigma\) is a \(\Sigma\)-tree\\
 		2. \(\sigma \in T_\Sigma\) and \(t_1,...,t_n \in T_\Sigma, n \ge 1 \iff \sigma(t_1,...,t_n) \in T_\Sigma\) 
 	\end{center}
 \end{definition}
 ~\\
-\textit{Note: Normally, there is no bound for the number of children in a tree (these trees are called \textit{unranked}), but in this draft we will only take a look at \textbf{ranked trees}, which have such a bound.}
+\textit{Note: In general, there is no bound for the number of children in a tree (these trees are called \textit{unranked}), but in this draft we will only take a look at \textbf{ranked trees}, which have such a bound.}
 
 \begin{definition}{tree-language \cite{automata-xml}}
 	\\
@@ -130,9 +132,9 @@ Just like for "normal" regular languages, it is of interest to know whether a gi
 
 Next, we have to declare some special words in the context of $\Sigma-trees$.
 
-\begin{definition}{variables, linear terms, ground-terms} \cite{tata-nfta}\cite{wiki-groundterm}\\
-	Let \(v \notin \Sigma = \emptyset\) be a constant (symbol with no child). We call $v$ a \textbf{variable} in a term over the ranked alphabet \(\Sigma\) if it is a placeholder
-	for any given \(\sigma \in \Sigma\) in that term. Terms containing every $v$ at most once are \textbf{linear terms}. All terms that don't contain any variables, are called \textbf{ground-terms} over \(\Sigma\).\\
+\begin{definition}{variables, terms, linear terms, ground-terms} \cite{tata-nfta}\cite{wiki-groundterm}\\
+	Let \(v \in V, v \notin \Sigma = \emptyset\) be a constant (symbol with no child). We call $v$ a \textbf{variable} (V is a set of Variables) in a \textbf{term} \(t \in T_{\Sigma \cup V}\), if it is a placeholder
+	for any given \(\sigma \in \Sigma\) or yet another variable that is not necessarily part of \(V\). Terms containing every $v$ at most once are \textbf{linear terms}. All terms which don't contain any variables, are called \textbf{ground-terms} over \(\Sigma\).\\
 \end{definition}
 
 \pagebreak
@@ -143,7 +145,7 @@ We can now define (Non-Deterministic) Finite Tree Automata for tree languages.
 
 \begin{definition}{NFTA \cite{tata-nfta}}
 	\\
-	A (Non-Deterministic) Finite Tree Automaton (NFTA) over the \textbf{alphabet \(\Sigma\)} is a tuple \(A = (Q, \Sigma, Q_f ,\Delta)\) where
+	A (Non-Deterministic) Finite Tree Automaton (NFTA) over the alphabet \(\Sigma\) is a tuple \(A = (Q, \Sigma, Q_f ,\Delta)\) where
 	\(Q\) is a \textbf{finite set of states}, \(Q_f \subseteq Q\) is a  \textbf{finite set of final states}, and \(\Delta\) is a \textbf{finite set of transition rules} of the type:
 	
 	\begin{center}
@@ -277,14 +279,14 @@ A run with the example input from the beginning of this chapter looks like this:
 \\
 Or in written form:\\
 \(and(or(false, true), or(true, true)) \moveStar and(or(q_f, q_t), or(q_t, q_t)) \\ \moveStar and(q_t, q_t) \moveStar q_t \)\\\\
-\(q_t \in Q_f \Rightarrow\) A accepts w \(\Rightarrow w \in L_A \) with \(L_A\) being the language recognized by the automaton.
+\(q_t \in Q_f \Rightarrow\) \(A\) accepts \(w\) \(\Rightarrow w \in L_A \) with \(L_A\) being the language recognized by the automaton.
 \\
 \\
 \end{example}
 
 \chapter*{Determinization}
 
-Non Deterministic Finite Tree Automata (NFTA) can be determinized just like Non Determinitistic Automata (NFA) in the word case. By knowing that there exists a DFTA for every NFTA, some algorithms become easier to write and proof. We will now take a look at how this is done. But first we have to define formally, what being deterministic means in the context of FTAs.
+Non Deterministic Finite Tree Automata (NFTA) can be determinized just like Non Determinitistic Automata (NFA) in the word case. By knowing that there exists a DFTA for every NFTA, definitions, proofs and algorithms become much easier, since we don't have to take special care of the properties of NFTAs. We will now take a look at how this is done. But first we have to define formally, what being deterministic means in the context of FTAs.
 
 \begin{definition}{Deterministic Finite Tree Automaton}
 
@@ -292,20 +294,21 @@ Non Deterministic Finite Tree Automata (NFTA) can be determinized just like Non 
 	\begin{center}
 		\(f(q_1,..., q_n) \rightarrow q_x\)\\
 		\(f(q_1,...,q_n) \rightarrow q_y\)\\
-		(Note: this includes the ground-terms)
+		(this includes the ground-terms)
 	\end{center}
 	or
 	\begin{center}
-		\(\epsilon(q_1, ..., q_n) \rightarrow q_x\)
+		\(\epsilon(q_1, ..., q_n) \rightarrow q_x\)\\
+		(state changes, even though no actual symbol is read)
 	\end{center}
-	with \(n \ge 0, q_x,q_y,q_1,...q_n \in Q, q_x \neq q_y, a \in \Sigma\)
+	with \(n \ge 0, q_x,q_y,q_1,...q_n \in Q, q_x \neq q_y, f \in \Sigma\)
 	is called a \textbf{Deterministic Finite Tree Automaton} (DFTA).
 \end{definition}
 
 Similar to the algorithm for Determinization in the word case, there exists a power set construction algorithm for determizing Tree Automata.
 
-\begin{definition}{\textbf{Algorithm DET} for Tree Automata \cite{tata-nfta}}
-\\
+\begin{definition}{\textbf{Algorithm DET} for Tree Automata \cite{tata-nfta}}\\
+	Note: statesOf(x) returns the set of states that contributed to the creation of the state x, while state(X) returns a state representing all states in the set X.
 \begin{algorithm}[H]
 	\KwData{NFTA \(A = (Q, \Sigma, Q_f ,\Delta)\)}
 	\(Q_d := \emptyset\)\\
@@ -314,8 +317,9 @@ Similar to the algorithm for Determinization in the word case, there exists a po
 		\While{\(\Delta_d\) grew last cycle} {
 			\( f(q_1,...,q_n) \in \Delta\)\\
 			\(s_1,...,s_n \in Q_d\)\\
+			~\\
 			/* meta-state representing the set of reachable states */ \\
-			\( s := state(\{ q \in Q ~|~ \exists q_1 \in s_1,..., q_n \in s_n, f(q_1,...q_n) \rightarrow q \in \Delta \}) \)\\~\\
+			\( s := state(\{ q \in Q ~|~ q_1 \in statesOf(s_1),..., q_n \in statesOf(s_n), f(q_1,...q_n) \rightarrow q \in \Delta \}) \)\\~\\
 			\(Q_d := Q_d \cup \{s\}\)\\
 			\(\Delta_d := \Delta_d \cup f(s_1,...,s_n) \rightarrow s \)
 		}
@@ -324,12 +328,9 @@ Similar to the algorithm for Determinization in the word case, there exists a po
 \end{algorithm}
 \end{definition}
 
-It is easy to see, that the algorithm produces a deterministic automaton \(A_d\) as we are automatically constructing meta-states for all reachable states and therefor eliminating all possible non-deterministic behaviour.
-
 \pagebreak
 
-However, we still have to prove that \(L(A) = L(A_d)\).\newline 
-For this, we have to show that the meta-states \(s \in Q_d\) are "built correctly", or in formal terms:
+It is easy to see that the algorithm produces a deterministic automaton \(A_d\) as we are automatically constructing meta-states for all reachable states and therefore eliminating all possible non-deterministic behaviour. However, we still have to prove \(L(A) = L(A_d)\). For this, we have to show that the meta-states \(s \in Q_d\) are "built correctly", or in formal terms:
 
 \begin{center}
 	\(For~any~tree~t: t \moveStarDet s \iff s = state(\{q \in Q ~|~ t \moveStar q\})\)
@@ -346,14 +347,14 @@ For this, we have to show that the meta-states \(s \in Q_d\) are "built correctl
 			\begin{itemize}
 				\item 
 				1.: \(t \moveStarDet s \Rightarrow (s = state(\{q \in Q ~|~ t \moveStar q\})\)\\\\
-				Supposing \(t \moveStarDet f(s_1, ..., s_n) \rightarrow_{A_d} s\), by induction hypothesis, for each \(i \in {1,..., n}\), we can see that \(s_i = state(\{q \in Q ~|~ q_i \moveStar q\}\).\\
+				Supposing \(t \moveStarDet f(s_1, ..., s_n) \rightarrow_{A_d} s\), by induction hypothesis, for each \(i \in {1,..., n}\), we can see \(s_i = state(\{q \in Q ~|~ q_i \moveStar q\}\).\\
 				\\
-				Since states \(s_i \in Q_d\), rules \(f(s_1, ..., s_n) \rightarrow s \in \Delta_d\) are added by the determinization algorithm and \( s := state(\{ q \in Q ~|~ \exists q_1 \in s_1,..., q_n \in s_n, f(q_1,...q_n) \rightarrow q \in \Delta \}) \), we can see that	\(s = state(\{q \in Q ~|~ t \moveStar q\})\).
+			    Because states \(s_i \in Q_d\), rules \(f(s_1, ..., s_n) \rightarrow s \in \Delta_d\) are added by the determinization algorithm and \( s := state(\{ q \in Q ~|~ q_1 \in statesOf(s_1),..., q_n \in statesOf(s_n), f(q_1,...q_n) \rightarrow q \in \Delta \}) \), we learn \(s = state(\{q \in Q ~|~ t \moveStar q\})\).
 				\\
 				\item
 				2.: \(s = state(\{q \in Q ~|~ t \moveStar q\}) \Rightarrow t \moveStarDet s\)\\\\
-				Considering \(s = state(\{q \in Q ~|~ f(q_1, ..., q_n) \moveStar q\})\) with state sets \(S_i\) defined as \(S_i := \{q \in Q ~|~ q_i \moveStar q\}\), by induction hypothesis for each \(i \in \{1, ..., n\}\) we know \(q_i \moveStarDet s_i = state(S_i)\).
-				Thus \( s := state(\{ q \in Q ~|~ \exists q_1 \in s_1,..., q_n \in s_n, f(q_1,...q_n) \rightarrow q \in \Delta \}) \).\\
+				Considering \(s = state(\{q \in Q ~|~ f(q_1, ..., q_n) \moveStar q\})\) with state sets \(S_i\) defined as \(S_i := \{q \in Q ~|~ q_i \moveStar q\}\), by induction hypothesis for each \(i \in \{1, ..., n\}\) we know \(q_i \moveStarDet s_i, s_i = state(S_i)\).
+				Thus \( s = state(\{ q \in Q ~|~ q_1 \in S_1,..., q_n \in S_n, f(q_1,...q_n) \rightarrow q \in \Delta \}) \).\\
 				\\
 				By the definition of \(\Delta_d\) in the determinization algorithm, \(f(s_1, ..., s_n) \in \Delta_d\) and thus \(t \moveStarDet s\).
 			\end{itemize}
@@ -371,19 +372,19 @@ Following is an example of how a NFTA can be determinized with this algorithm.
 
 	\begin{example}{Running the DET algorithm}
 		\\
-		consider an obviously non deterministic FTA given like this:\\
+		consider a non deterministic FTA given like this:\\
 		\automatonDefinition\\
 		\(\Sigma = \{ul, li, text, empty\}\)\\
 		\(Q = \{q_{ul}, q_{li1}, q_{li2}, q_{text}, q_{empty}\}\)\\
 		\(Q_f = \{q_{ul}\}\)\\
 		\(\Delta = \{
 		ul(q_{li1},q_{li2}) \rightarrow q_{ul}, ul(q_{li2},q_{li1}) \rightarrow q_{ul}, \newline
-		li(q_{text},q_{text}) \rightarrow q_{li1}, li(q_{text}, q_{text}) \rightarrow q_{li2}\newline
+		\mathbf{li(q_{text}) \rightarrow q_{li1}, li(q_{text}) \rightarrow q_{li2},}\newline
 		text \rightarrow q_{text}, empty \rightarrow q_{empty}, \newline
-		\epsilon(q_{empty}) \rightarrow q_{text}
+		\mathbf{\epsilon(q_{empty}) \rightarrow q_{text}}
 		\}\)
 		\\\\
-		This recognizes all trees that represent unordered lists (ul) in HTML notation that contain 2 list items (li) that are either empty or contain text:
+		This recognizes all trees that represent unordered lists (ul) in HTML notation, which contain 2 list items (li):
 			%careful: space indentation
 			\lstset{
 				basicstyle=\footnotesize, frame=tb,
@@ -410,32 +411,97 @@ Following is an example of how a NFTA can be determinized with this algorithm.
 				\draw [-] (or2) to (true2);
 				\end{tikzpicture}
 			\end{center}
-					If we start determinizing with the ground terms and then go "up in the hierarchy", we get these new rules and states:
+					If we start determinizing with the rules containing no state and then go "up in the hierarchy" and generate all the states on-the-fly, we get these new rules:
 					\\
 					\(
 					\newline
 					text \rightarrow state(\{q_{text}\})
 					\newline
-					empty \rightarrow state(\{q_{text}, q_{empty}\})
+					empty \rightarrow state(\{q_{text}, q_{empty}\})\)
+					\\
+					\(li(state(\{q_{text}\}))) \rightarrow state(\{q_{li1}, q_{li2}\})\)
 					\newline
-					li(state(\{q_{text}\}), state(\{q_{text}\})) \rightarrow state(\{q_{li1}, q_{li2}\})
-					\newline
-					li(state(\{q_{text}, q_{empty}\}), state(\{q_{text}, q_{empty}\})) \rightarrow state(\{q_{li1}, q_{li2}\})
+					\(li(state(\{q_{text}, q_{empty}\})) \rightarrow state(\{q_{li1}, q_{li2}\})
 					\newline
 					ul(state(\{q_{li1}, q_{li2}\}), state(\{q_{li1}, q_{li2}\})) \rightarrow state(\{q_{ul}\})
 					\)
 					\\
 					\\
 				    And the set of final states is \(Q_{f_d} = \{state(\{q_{ul}\})\}\).
+				    \\
+				    \\
+				    As we can see, there is no \(\epsilon\)-rule left and we don't have to choose which rule to apply when reading 
 			\end{example}
 
 \pagebreak
 
 \chapter*{Minimization}
 
-\begin{definition}{Context}\\
-	A context $C \in C(\Sigma)$ is a tree 
+\textcolor{red}{HIER FEHLT NOCH MOTIVATION}
+
+\begin{definition}{Context} \cite{tata-nfta}\cite{martens-uni-dortmund-lecture01}\\
+	Let \(V_n\) be a set of n variables. Then, a linear term \(C \in T_{\Sigma \cup V_n}\) is called a \textbf{context}. Furthermore, \(C[t_1, ..., t_n], t_1, ..., t_n \in T_\Omega\) is known as a \textbf{context application}, meaning that variables \(v_i \in V_n\) are replaced by (sub-)trees \(t_i \in T_\Omega\).
+	\\
+	\\
+	Note: \(T_\Omega \supseteq T_{\Sigma \cup V_n}\), \textbf{can} contain new variables.
+	
+	\begin{minipage}{0.5\textwidth}
+		\begin{center}
+			\begin{tikzpicture}
+			\fill[black] (-0.5, -0.5) -- (0.5, -0.5) -- (2, 1) -- (3.5, -0.5) -- (4.5, -0.5) -- (2, 2) -- (-0.5, -0.5);
+			\draw[black] (2, 1) -- (2, 0.8);
+			\node at (2, 0.65) {x};
+			\end{tikzpicture}
+			\captionof{figure}{Context with one variable (x)}
+		\end{center}
+	\end{minipage}
+	\begin{minipage}{0.5\textwidth}
+		\begin{center}
+			\begin{center}
+				\begin{tikzpicture}
+				\fill[black] (0,0) -- (1, 0) -- (2, 1) -- (3, 0) -- (4, 0) -- (2, 2) -- (0,0);
+				\fill[gray] (0.5, -0.5) -- (3.5, -0.5) -- (2, 1) -- (0.5, -0.5);
+				\end{tikzpicture}	
+			\end{center}
+			\captionof{figure}{Context application}
+		\end{center}
+	\end{minipage}
+	\begin{center}
+		\begin{tikzpicture}
+		\fill[black] (0,0) -- (1, 0) -- (2, 1) -- (3, 0) -- (4, 0) -- (2, 2) -- (0,0);
+		\fill[gray] (0.5, -0.5) -- (1, -0.5) -- (2, 0.5) -- (3.0, -0.5) -- (3.5, -0.5) -- (2, 1) -- (0.5, -0.5);
+		\draw[black] (2, 0.5) -- (2, 0.3);
+		\node at (2, 0.15) {y};
+		\end{tikzpicture}	
+		\captionof{figure}{Context application with a new context}
+	\end{center}	
 \end{definition}
+
+\begin{definition}{Congruence} \cite{tata-nfta} \\
+	An equivalence relation \(\equiv\)  on \(T_\Sigma\) is a \textbf{congruence} on \(T_\Sigma\) if for every \(f \in \Sigma\) with \(n\) arguments applies:
+	\begin{center}
+		\(\Sigma \ni u_i \equiv w_i \in \Sigma, 1 \leq i \leq n \Rightarrow f(u_1, ..., u_n) \equiv f(w_1, ..., w_n)\)\\
+		\(\#~of \equiv-classes~is~finite \Rightarrow \equiv\) is of \textbf{finite index}.
+	\end{center}
+	Additionally a congruence is an equivalence relation closed under context. This means that for any \(C \in T_{\Sigma \cup V}\), if \(u \equiv w \Rightarrow C[u] \equiv C[w]\).
+\end{definition}
+
+\begin{definition}{\(\equiv_L\)} \cite{tata-nfta} \\
+	For any given tree language \(L \in T_\Sigma\), we define the congruence \(\equiv_L\) on \(T_\Sigma\) by: \(u \equiv_L w\), if for all Contexts \(C \in T_{\Sigma \cup V}\) applies:
+	\begin{center}
+		\(C[u] \in L \iff C[v] \in L\)
+	\end{center}
+\end{definition}
+
+
+\pagebreak
+
+\begin{theorem}{Myhill-Nerode}\\
+	These statements are equivalent:\\\\
+	(i) \(L\) is a regular tree language\\\\
+	(ii) \(L\) is the union of some congruence classes of finite index\\\\
+	(iii) the relation \(\equiv_L\) is a congruence of finite index
+\end{theorem}
 
 \pagebreak
 
@@ -445,15 +511,20 @@ Following is an example of how a NFTA can be determinized with this algorithm.
 \begin{thebibliography}{99}
 %
 \bibitem {automata-xml}
-	Automata theory for XML researchers
-	Frank Neven
-	University of Limburg
+	Automata theory for XML researchers,
+	Frank Neven,
+	University of Limburg,
 	frank, neven~luc, ac. be,
-	http://homepages.inf.ed.ac.uk/libkin/dbtheory/frank.pdf, 03/11/2015
+	\url{http://homepages.inf.ed.ac.uk/libkin/dbtheory/frank.pdf}, 03/11/2015
 \bibitem {tata-nfta}
 	Tree Automata and Techniques, Hubert Comon et. al, Pages 19-39
 \bibitem {wiki-groundterm}
 	\url{http://en.wikipedia.org/wiki/Ground\_expression}, 03/16/2015
+\bibitem {martens-uni-dortmund-lecture01}
+	Automata and Logic on Trees,
+	Wim Martens,
+	Stijn Vansummeren,
+	\url{http://lrb.cs.uni-dortmund.de/\textasciitilde martens/data/esslli07/lecture01.pdf}, 03/17/2015
 
 
 

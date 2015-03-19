@@ -1,0 +1,24 @@
+\frametitle{Determinization}\framesubtitle {Now for NFTAs (2)}
+%careful: space indentation
+\begin{lstlisting}[frame=single]
+<ul>
+    <li>text</li>
+    <li>empty</li>
+</ul>
+\end{lstlisting}
+\pause
+Or as a tree input:
+\begin{center}
+\begin{tikzpicture}[auto]
+\node (and) at (2, 3) {$ul$};
+\node (or1) at (1, 2) {$li$};
+\node (or2) at (3, 2) {$li$};
+\node (true1) at (1, 1) {$text$};
+\node (true2) at (3, 1) {$empty$};
+
+\draw [-] (and) to (or1);
+\draw [-] (and) to (or2);
+\draw [-] (or1) to (true1);
+\draw [-] (or2) to (true2);
+\end{tikzpicture}
+\end{center}
