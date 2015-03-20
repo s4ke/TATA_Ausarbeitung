@@ -139,9 +139,6 @@ Next, we have to declare some special words in the context of $\Sigma-trees$.
 
 \pagebreak
 We can now define (Non-Deterministic) Finite Tree Automata for tree languages.
-\\
-\\
-\textit{Note: this definition will be expanded with more terms later in this draft and some of the content in this definition will get a specific name assigned to them. But in order to not overcomplicate the definition, these parts are left out for now.}
 
 \begin{definition}{NFTA \cite{tata-nfta}}
 	\\
@@ -437,13 +434,14 @@ Following is an example of how a NFTA can be determinized with this algorithm.
 
 \chapter*{Minimization}
 
-\textcolor{red}{HIER FEHLT NOCH MOTIVATION}
+Now that we can obtain a DFTA for each NFTA, we can take a look at how we can minimize these newly determinized automata.
+\\
+Just like in the word case there exists a Myhill-Nerode theorem for Finite Tree Automata. But before we can use it, we have to define \textbf{Contexts}, \textbf{Congruence} and \(\equiv_L\).
 
 \begin{definition}{Context} \cite{tata-nfta}\cite{martens-uni-dortmund-lecture01}\\
-	Let \(V_n\) be a set of n variables. Then, a linear term \(C \in T_{\Sigma \cup V_n}\) is called a \textbf{context}. Furthermore, \(C[t_1, ..., t_n], t_1, ..., t_n \in T_\Omega\) is known as a \textbf{context application}, meaning that variables \(v_i \in V_n\) are replaced by (sub-)trees \(t_i \in T_\Omega\).
-	\\
-	\\
-	Note: \(T_\Omega \supseteq T_{\Sigma \cup V_n}\), \textbf{can} contain new variables.
+	Let \(V_n\) be a set of n variables. Then, a linear term \(C \in T_{\Sigma \cup V_n}\) is called a \textbf{context}. Furthermore, \(C[t_1, ..., t_n], t_1, ..., t_n \in T_\Omega\) is known as a \textbf{context application}, meaning that variables \(v_i \in V_n\) are replaced by (sub-)trees \(t_i \in T_\Omega\) with \(T_\Omega \supseteq T_{\Sigma \cup V_n}\)
+	\\\\
+	Note: \(T_\Omega\) \textbf{can} contain new variables.
 	
 	\begin{minipage}{0.5\textwidth}
 		\begin{center}
@@ -452,7 +450,7 @@ Following is an example of how a NFTA can be determinized with this algorithm.
 			\draw[black] (2, 1) -- (2, 0.8);
 			\node at (2, 0.65) {x};
 			\end{tikzpicture}
-			\captionof{figure}{Context with one variable (x)}
+			\captionof{figure}{Context with one variable (x) \cite{martens-uni-dortmund-lecture01}}
 		\end{center}
 	\end{minipage}
 	\begin{minipage}{0.5\textwidth}
@@ -463,7 +461,7 @@ Following is an example of how a NFTA can be determinized with this algorithm.
 				\fill[gray] (0.5, -0.5) -- (3.5, -0.5) -- (2, 1) -- (0.5, -0.5);
 				\end{tikzpicture}	
 			\end{center}
-			\captionof{figure}{Context application}
+			\captionof{figure}{Context application \cite{martens-uni-dortmund-lecture01}}
 		\end{center}
 	\end{minipage}
 	\begin{center}
@@ -473,35 +471,50 @@ Following is an example of how a NFTA can be determinized with this algorithm.
 		\draw[black] (2, 0.5) -- (2, 0.3);
 		\node at (2, 0.15) {y};
 		\end{tikzpicture}	
-		\captionof{figure}{Context application with a new context}
+		\captionof{figure}{Context application with a new context \cite{martens-uni-dortmund-lecture01}}
 	\end{center}	
 \end{definition}
 
 \begin{definition}{Congruence} \cite{tata-nfta} \\
 	An equivalence relation \(\equiv\)  on \(T_\Sigma\) is a \textbf{congruence} on \(T_\Sigma\) if for every \(f \in \Sigma\) with \(n\) arguments applies:
 	\begin{center}
-		\(\Sigma \ni u_i \equiv w_i \in \Sigma, 1 \leq i \leq n \Rightarrow f(u_1, ..., u_n) \equiv f(w_1, ..., w_n)\)\\
+		\(T_\Sigma \ni u_i \equiv w_i \in T_\Sigma, 1 \leq i \leq n \Rightarrow f(u_1, ..., u_n) \equiv f(w_1, ..., w_n)\)\\
 		\(\#~of \equiv-classes~is~finite \Rightarrow \equiv\) is of \textbf{finite index}.
 	\end{center}
 	Additionally a congruence is an equivalence relation closed under context. This means that for any \(C \in T_{\Sigma \cup V}\), if \(u \equiv w \Rightarrow C[u] \equiv C[w]\).
 \end{definition}
 
+\pagebreak
+
 \begin{definition}{\(\equiv_L\)} \cite{tata-nfta} \\
-	For any given tree language \(L \in T_\Sigma\), we define the congruence \(\equiv_L\) on \(T_\Sigma\) by: \(u \equiv_L w\), if for all Contexts \(C \in T_{\Sigma \cup V}\) applies:
+	For any given tree language \(L \in T_\Sigma\), we define the congruence \(\equiv_L\) on \(T_\Sigma\) by: \(T_\Sigma \ni u \equiv_L w \in T_\Sigma\), if for all Contexts \(C \in T_{\Sigma \cup V}\) applies:
 	\begin{center}
 		\(C[u] \in L \iff C[v] \in L\)
 	\end{center}
 \end{definition}
 
+For the sake of easier proofs, we consider all DFTAs as \textbf{complete} and \textbf{reduced}.
 
-\pagebreak
+\begin{definition}{Completeness and reduction} \cite{wiki-tree-automaton}\\
+A FTA A is \textbf{complete} if there is at least one transition rule available for every possible symbol-states combination. A state \(q\) is \textbf{accessible} if there exists a ground term \(t\) such that \(t \moveStar q\). A NFTA is \textbf{reduced} if all its states are accessible.
+\end{definition}
 
-\begin{theorem}{Myhill-Nerode}\\
+\textit{Note: All examples for Finite Tree Automata given in this draft are supposed to be complete and reduced. We only do not add a capturing state for all impossible symbol-state combinations for the sake of simplicity. Once such a capturing state would be reached there'd no way to get to another state.}
+
+We can now give the Myhill-Nerode theorem.
+
+\begin{theorem}{Myhill-Nerode} \cite{tata-nfta}\\
 	These statements are equivalent:\\\\
 	(i) \(L\) is a regular tree language\\\\
 	(ii) \(L\) is the union of some congruence classes of finite index\\\\
 	(iii) the relation \(\equiv_L\) is a congruence of finite index
 \end{theorem}
+\begin{proof}{~}
+	\begin{itemize}
+		\item (i) \(\Rightarrow\) (ii). Assume that the tree language \(L\) is recognized by some complete DFTA \(A = (Q, \Sigma, Q_f, \delta)\) with \(\delta\) being a transition function.
+		Let us consider the relation \(\equiv_A\) defined on \(T_\Sigma\) by: \(T_\Sigma \ni u \equiv v \in T_\Sigma\), if \(\delta(u) = \delta(v)\). Since we know that \(Q\) only has a finite amount of states in it and the number of equivalence classes may at most be equal to the size of \(Q\), we can deduce that \(\equiv_A\) is a congruence of finite index.
+	\end{itemize}
+\end{proof}
 
 \pagebreak
 
@@ -518,13 +531,15 @@ Following is an example of how a NFTA can be determinized with this algorithm.
 	\url{http://homepages.inf.ed.ac.uk/libkin/dbtheory/frank.pdf}, 03/11/2015
 \bibitem {tata-nfta}
 	Tree Automata and Techniques, Hubert Comon et. al, Pages 19-39
-\bibitem {wiki-groundterm}
-	\url{http://en.wikipedia.org/wiki/Ground\_expression}, 03/16/2015
 \bibitem {martens-uni-dortmund-lecture01}
 	Automata and Logic on Trees,
 	Wim Martens,
 	Stijn Vansummeren,
 	\url{http://lrb.cs.uni-dortmund.de/\textasciitilde martens/data/esslli07/lecture01.pdf}, 03/17/2015
+\bibitem {wiki-groundterm}
+	\url{http://en.wikipedia.org/wiki/Ground\_expression}, 03/16/2015
+\bibitem {wiki-tree-automaton}
+	\url{http://en.wikipedia.org/wiki/Tree\_automaton}, 03/20/2015
 
 
 
