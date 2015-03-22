@@ -304,7 +304,7 @@ Non Deterministic Finite Tree Automata (NFTA) can be determinized just like Non 
 
 Similar to the algorithm for Determinization in the word case, there exists a power set construction algorithm for determizing Tree Automata.
 
-\begin{definition}{\textbf{Algorithm DET} for Tree Automata \cite{tata-nfta}}\\
+\begin{definition}{Algorithm DET for Tree Automata \cite{tata-nfta}}\\
 	Note: statesOf(x) returns the set of states that contributed to the creation of the state x, while state(X) returns a state representing all states in the set X.
 \begin{algorithm}[H]
 	\KwData{NFTA \(A = (Q, \Sigma, Q_f ,\Delta)\)}
@@ -356,7 +356,7 @@ It is easy to see that the algorithm produces a deterministic automaton \(A_d\) 
 				By the definition of \(\Delta_d\) in the determinization algorithm, \(f(s_1, ..., s_n) \in \Delta_d\) and thus \(t \moveStarDet s\).
 			\end{itemize}
 	\end{itemize}
-	
+	\qed
 \end{proof}
 
 \pagebreak
@@ -500,6 +500,9 @@ A FTA A is \textbf{complete} if there is at least one transition rule available 
 \end{definition}
 
 \textit{Note: All examples for Finite Tree Automata given in this draft are supposed to be complete and reduced. We only do not add a capturing state for all impossible symbol-state combinations for the sake of simplicity. Once such a capturing state would be reached there'd no way to get to another state.}
+\\\\
+
+\pagebreak
 
 We can now give the Myhill-Nerode theorem.
 
@@ -511,10 +514,64 @@ We can now give the Myhill-Nerode theorem.
 \end{theorem}
 \begin{proof}{~}
 	\begin{itemize}
-		\item (i) \(\Rightarrow\) (ii). Assume that the tree language \(L\) is recognized by some complete DFTA \(A = (Q, \Sigma, Q_f, \delta)\) with \(\delta\) being a transition function.
-		Let us consider the relation \(\equiv_A\) defined on \(T_\Sigma\) by: \(T_\Sigma \ni u \equiv v \in T_\Sigma\), if \(\delta(u) = \delta(v)\). Since we know that \(Q\) only has a finite amount of states in it and the number of equivalence classes may at most be equal to the size of \(Q\), we can deduce that \(\equiv_A\) is a congruence of finite index.
+		\item (i) \(\Rightarrow\) (ii): Assume that the tree language \(L\) is recognized by some complete DFTA \(A = (Q, \Sigma, Q_f, \delta)\) with \(\delta\) being a transition function (i).
+		Let us consider the relation \(\equiv_A\) defined on \(T_\Sigma\) by: \(T_\Sigma \ni u \equiv v \in T_\Sigma\), if \(\delta(u) = \delta(v)\). Since we know that \(Q\) only has a finite amount of states in it and the number of equivalence classes may at most be equal to the size of \(Q\), we can deduce that \(\equiv_A\) is a congruence of finite index (ii).
+		\\
+		\item (ii) \(\Rightarrow\) (iii): By denoting the congruence of finite index as \(\cong\) and assuming that \(T_\Sigma \ni u \cong v \in T_\Sigma\), it can be proven that \(C[u] \cong C[v]\) for all contexts \(C \in T_{\Sigma \cup V} \) by an easy induction on the structure of terms. Since \(L\) is the union of some equivalence classes of the congruence of finite index \(\cong\) (ii), we have \(C[u] \in L \iff C[v] \in L \). Therefore we know that  \( u \equiv_L v \) and that \( \equiv_L \) contains the equivalence class of u in \( \cong \). Furthermore we now know that \(index(\equiv_L) \leq index(\cong) \Rightarrow index(\equiv_L)~is~finite \) (iii).
+		\\
+		\item (iii) \(\Rightarrow\) (i):
+		 By representing the set of equivalence classes of \( \equiv_L \) (iii) as the finite set of states \(Q_{min}\) with \(|Q_{min}| = |\equiv_L|\), we know that every equivalence class has its own state. By denoting the equivalence class of a term \(u \in T_\Sigma\) as \([u]\) we define the transition function \(\delta_{min}\) for every \( f \in \Sigma\) with \(n\) arguments as:
+		 \begin{center}
+			 \(\delta_{min}(f, [u_1], ..., [u_n]) = [f(u_1, ..., u_n)]\)
+		 \end{center}
+		 The definition of \(\delta\) is consistent because \(\equiv_L\) is a congruence. With \(Q_{min_f} := \{ [u] | u \in L \}\) the resulting DFTA \(A_{min} := (Q_{min}, \Sigma, Q_{min_f}, \delta_{min}\) recognizes the tree language \(L\) (i). 
+		 \qed
 	\end{itemize}
 \end{proof}
+
+\pagebreak
+
+As a consequence of this theorem we can deduce the following:
+
+\begin{corollary} \cite{tata-nfta}\\
+	The minimum DFTA recognizing a tree language \(L\) is unique up to renaming the states and is given by \(A_{min}\) in the proof of the Myhill-Nerode Theorem.
+\end{corollary}
+
+This means that we can minimize a tree automaton by computing the congruence classes of the language it recognizes. But before we can put this to use, we have to prove the corollary first.
+
+\begin{proof} {~} \cite{tata-nfta}\\
+	Assume that \(L\) is recognized by some DFTA \(A = (Q, \Sigma, Q_f, \delta)\). Then the relation \(\equiv_A\) is a refinement of \(\equiv_L\) with \(index(\equiv_A) \geq index(\equiv_L)\), thus \(|Q| \geq |Q_{min}|\). We know that \(A\) is reduced (all states are accesible), because otherwise a state could be removed contradicting to the definition of \(\equiv_A\). Let \(q \in Q\) and \(u \in T_\Sigma\), such that \(\delta(u) = q\). Then the state \(q\) can be consistently identified with the state \(\delta_{min}(u)\), since \(\delta\) is a refinement of \(\delta_{min}\) and we can see that every state \(q \in Q\) has a corresponding state \(q_{min} \in Q_{min}\).
+	\qed
+\end{proof}
+
+By using this Corollary and the construction given in the Myhill-Nerode theorem we can deduce an algorithm to minimize Deterministic Finite Tree Automata:
+
+\begin{definition}{Algorithm MIN for Tree Automata} \cite{martens-uni-dortmund-lecture02}\\
+	\begin{algorithm}[H]
+		\KwData{complete and reduced DFTA \(A = (Q, \Sigma, Q_f ,\Delta)\)}
+		Set \(P = \{(q_f, q)~|~q_f \in Q_f, q \in Q \setminus Q_f\}\)\\
+		Set \(P' = P\)\\
+		\While{\(P' \neq P\)} {
+			\(P = P'\)\\
+			\(\forall p_1, p_2, p_3 \in Q, p_1 \neq p_2, p_1 \neq p_3, p_2 \neq p_3,\)\\
+			define \(\neg (p_1P'p_2) \iff\)\\
+			~~~~/* coudln't distinguish to anything in the last cycle */\\
+			\textcolor{red}{ist das hier \(p_3\)? Weil sonst bricht das ja sofort ab...}\\
+			~~~~1.\(\neg(p_1Pp_3)\) or\\
+			~~~~/* can't distinguish \(p_1\) from \(p_2\), yet */\\
+			~~~~2.\(\exists f \in \Sigma\) with \(n\) arguments, \(\exists q_1, ..., q_{i-1}, q_{i+1}, ..., q_n \in Q\), \\
+			~~~~~ \(\neg(r_1Pr_2), r_1, r_2 \in Q\), where: \\
+			~~~~~~~ \(f(q_1, ..., q_{i-1}, p_1, q_{i+1}, ..., q_n) \rightarrow r_1\) and\\
+			~~~~~~~ \(f(q_1, ..., q_{i-1}, p_2, q_{i+1}, ..., q_n) \rightarrow r_2\) \\
+			~~~~~~~ (Note: this works for multiple occurences of \(p_1\) and \(p_2\) as well, \\
+			~~~~~~~~ see the example on the next page)
+		}
+		\(Q_{min} = \) set of equivalence classes of P \\
+		\(\Delta_{min} = \{f([q_1], ..., [q_n]) \rightarrow [q]~|~f(q_1, ..., q_n) \rightarrow q \in \Delta\}\)\\
+		\(Q_{f_{min}} = \{[q]~|~q \in Q_f\}\)\\
+		\KwResult{complete, reduced and minimal DFTA \(A_{min} = (Q_{min}, \Sigma, Q_{f_{min}}, \Delta_{min}) \)}
+	\end{algorithm}
+\end{definition}
 
 \pagebreak
 
@@ -536,6 +593,11 @@ We can now give the Myhill-Nerode theorem.
 	Wim Martens,
 	Stijn Vansummeren,
 	\url{http://lrb.cs.uni-dortmund.de/\textasciitilde martens/data/esslli07/lecture01.pdf}, 03/17/2015
+\bibitem {martens-uni-dortmund-lecture02}
+	Automata and Logic on Trees,
+	Wim Martens,
+	Stijn Vansummeren,
+	\url{http://lrb.cs.uni-dortmund.de/\textasciitilde martens/data/esslli07/lecture02.pdf}, 03/21/2015
 \bibitem {wiki-groundterm}
 	\url{http://en.wikipedia.org/wiki/Ground\_expression}, 03/16/2015
 \bibitem {wiki-tree-automaton}
