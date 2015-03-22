@@ -575,6 +575,82 @@ By using this Corollary and the construction given in the Myhill-Nerode theorem 
 
 \pagebreak
 
+
+While we are not giving a complete proof for this algorithm, we can at least go over why it is correct for a given language \(L = L(A)\) and the automaton \(A = (Q, \Sigma, Q_f, \Delta) \) \cite{tata-nfta}:
+\begin{itemize}
+	\item In the while loop we are marking all tuples \(p_1, p_2\) as distinguishable when they are added to the relation
+	\\
+	\item In order to get the equivalence classes for \(Q_{min}\), we are merging all pairs of indistinguishable states to a new one representing both. After having done this incrementally for all not marked combinations, these "artificial" states have to be distinguishable to all other states and \(Q_{min}\) must therefore be minimal. This can easily be proven correct by contradiction.
+	\\
+	\item It isn't hard to see that the construction of \(Q_{f_{min}}\) and \(\Delta_{min} \) is correct.
+\end{itemize}
+
+\begin{example}{Running the MIN algorithm}\\
+After cleaning up the Automaton of our previous unordered list example, one might already see that it isn't minimal yet:\\\\
+				\automatonDefinition
+				\(\Sigma = \{ul, li, text, empty\}\)
+				\\
+				\(Q = \{q_{ul}, \mathbf{q_{text}, q_{text2}}, q_{li}\}\)
+				\\
+				\(Q_f = \{ q_{ul} \}\)
+				\\
+				\(\Delta = \{		text \rightarrow q_{text},
+				\newline
+				empty \rightarrow q_{text2},
+				\newline
+				\mathbf{
+					li(q_{text}) \rightarrow q_{li},	
+				}	
+				\newline
+				\mathbf {
+					li(q_{text2}) \rightarrow q_{li},
+				}
+				\newline
+				ul(q_{li}, q_{li}) \rightarrow q_{ul}
+				\}\)
+				\\
+				\\
+While we should be able to fix this by hand, we are now using the MIN algorithm to minimize this automaton. In the following table, we are marking all tuples \(p_1, p_2\) that are distinguishable in that cycle by the index of that cycle, so we can see the process in action.
+\begin{center}
+	\begin{tabular}{| l |  l | l | l |  l  |}
+		\hline
+		&	 \(q_{text}\) 	& 	\(q_{text2}\) 	& 	\(q_{li}\)  	& 	\(q_{ul}\) 	\\ \hline
+		\(q_{text}\) 	&	-			&	-			&	-		&	-		\\ \hline
+		\(q_{text2}\) 	&	(merge)	&	-		&	-		&	-		\\ \hline
+		\(q_{li}\) 		&	1			&	1			&	-		&	-		\\ \hline
+		\(q_{ul}\) 		&	0			&	0			&	0		&	-		\\
+		\hline
+	\end{tabular}
+\end{center}
+
+\pagebreak
+
+As predicted \(q_{text}\) and \(q_{text2}\) have to be merged in order to minimize \(A\). The resulting automaton is:
+\\
+\\
+\automatonDefinition
+\(\Sigma = \{ul, li, text, empty\}\)
+\\
+\(Q = \{q_{ul}, \mathbf{q_{text_{1\&2}}}, q_{li}\}\)
+\\
+\(Q_f = \{ q_{ul} \}\)
+\\
+\(\Delta = \{		text \rightarrow \mathbf{q_{text_{1\&2}}},
+\newline
+empty \rightarrow \mathbf{q_{text_{1\&2}}},
+\newline
+\mathbf{
+	li(q_{text_{1\&2}}) \rightarrow q_{li},	
+}
+\newline
+ul(q_{li}, q_{li}) \rightarrow q_{ul}
+\}\)
+\\
+\\
+\end{example}
+
+\pagebreak
+
 %
 % ---- Bibliography ----
 %
