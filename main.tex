@@ -103,38 +103,38 @@ A good example for a tree language is the one consisting of all binary boolean e
 \begin{center}
 	\(and(or(false, true), or(true, true))\)\\
 \end{center}
-In order to ease understanding, the elements of the language are often represented as a tree in a graphical way:
+In order to simplify understanding, the elements of the language are often represented as a tree in a graphical way:
 \begin{center}
 	\simpleTreeExample
 \end{center}
 ~\\
-Just like for "normal" regular languages, it is of interest to know whether a given word (in this case a tree) is part of the (tree-)language. In order to describe an automaton that recognizes tree-languages we have to define what \textbf{\(\Sigma\)-trees} and (regular) \textbf{tree-languages} are, first.
+Just like for regular word languages, it is of interest to know whether a given word (in this case a tree) is part of the (tree-)language. In order to describe an automaton that recognizes tree-languages we have to define what \textbf{\(\Sigma\)-trees} and (regular) \textbf{tree-languages} are, first.
 
 \begin{definition}{\(\Sigma\)-tree \cite{automata-xml}}
 	\\
 	The set of \(\Sigma\)-trees \(T_\Sigma\) over the \textbf{alphabet \(\Sigma\)} is inductively defined as follows:
 	\begin{center}
 		1. every \(\sigma \in \Sigma\) is a \(\Sigma\)-tree\\
-		2. \(\sigma \in T_\Sigma\) and \(t_1,...,t_n \in T_\Sigma, n \ge 1 \iff \sigma(t_1,...,t_n) \in T_\Sigma\) 
+		2. \(\sigma \in \Sigma\) and \(t_1,...,t_n \in T_\Sigma, n \ge 1 \iff \sigma(t_1,...,t_n) \in T_\Sigma\) 
 	\end{center}
 \end{definition}
 ~\\
-\textit{Note: In general, there is no bound for the number of children in a tree (these trees are called \textit{unranked}), but in this draft we will only take a look at \textbf{ranked trees}, which have such a bound.}
+\textit{Note: In general, there is no bound for the number of children in a tree (these trees are called \textit{unranked}), but in this paper we will only take a look at \textbf{ranked trees}, which have such a bound.}
 
 \begin{definition}{tree-language \cite{automata-xml}}
 	\\
 	A tree language \(L_{t\Sigma}\) over the alphabet \(\Sigma\) is defined as a subset of \(T_\Sigma\):
 	\begin{center}
 		\(L_{t\Sigma} \subseteq T_\Sigma\)
-	\end{center}
-	\(\Rightarrow T_\Sigma\) is already a tree-language.	
+	\end{center}	
 \end{definition}
 
-Next, we have to declare some special words in the context of $\Sigma-trees$.
+From that definition, we can see that \(T_\Sigma\) is already a tree-language.
+Next, we have to declare some terminology in the context of $\Sigma-trees$.
 
-\begin{definition}{variables, terms, linear terms, ground-terms} \cite{tata-nfta}\cite{wiki-groundterm}\\
+\begin{definition}{variables, terms, linear terms} \cite{tata-nfta}\\
 	Let \(v \in V, v \notin \Sigma = \emptyset\) be a constant (symbol with no child). We call $v$ a \textbf{variable} (V is a set of Variables) in a \textbf{term} \(t \in T_{\Sigma \cup V}\), if it is a placeholder
-	for any given \(\sigma \in \Sigma\) or yet another variable that is not necessarily part of \(V\). Terms containing every $v$ at most once are \textbf{linear terms}. All terms which don't contain any variables, are called \textbf{ground-terms} over \(\Sigma\).\\
+	for any given \(\sigma \in \Sigma\) or yet another variable that is not necessarily part of \(V\). Terms containing every $v$ at most once are \textbf{linear terms}.\\
 \end{definition}
 
 \pagebreak
@@ -152,23 +152,19 @@ We can now define (Non-Deterministic) Finite Tree Automata for tree languages.
 	For \(n = 0\), we write:
 	\begin{center}
 		\(a \rightarrow q(a)\) \\
-		where  \(a \in \Sigma, q \in Q \)
+		where  \(a \in \Sigma, q \in Q \) \\
+		Note: These rules transition into the initial states of a NFTA
 	\end{center}
 	~\\
-	Tree automata over \(\Sigma\) run on ground terms over \(\Sigma\). An automaton starts at
-	the leaves and moves upward, associating along a \textbf{run} a state with each subterm
-	inductively while reducing the tree via the transition rules.
+	\textcolor{red}{
+	An automaton starts at
+	the leaves and moves upward, inductively associating along a \textbf{run} each subterm to a state while reducing the tree via the transition rules.}
 	\\\\
 	For a tree $t' \in T_{\Sigma \cup Q}$ that is the result of applying a transition rule on a tree $t \in T_{\Sigma \cup Q}$ we write:
 		$$t \rightarrow_A t'$$
-	If more or equal than one transition rules are applied we denote it like this:
-		$$t \moveStar t'$$	
-	$\moveStar$ is the reflexive and transitive closure of $\rightarrow_A$.\\
+	If zero or more transition rules are applied, we denote it like this:
+		$$t \moveStar t'$$
 \end{definition}
-\textit{
-	Note: There is no initial state in an NFTA but the ground-terms (which can be considered to be the "initial rules" of the NFTA) act alike by transitioning constant symbols into a state.
-}
-\\
 
 \pagebreak
 
@@ -287,11 +283,11 @@ Non Deterministic Finite Tree Automata (NFTA) can be determinized just like Non 
 
 \begin{definition}{Deterministic Finite Tree Automaton}
 
-	A tree automaton with no two rule of the type:
+	A tree automaton with no two rules of the type:
 	\begin{center}
 		\(f(q_1,..., q_n) \rightarrow q_x\)\\
 		\(f(q_1,...,q_n) \rightarrow q_y\)\\
-		(this includes the ground-terms)
+		with \(q_x \neq q_y\) \\
 	\end{center}
 	or
 	\begin{center}
@@ -338,7 +334,7 @@ It is easy to see that the algorithm produces a deterministic automaton \(A_d\) 
 	This proof is done via an induction over the structure of the symbols in \(\Sigma\).
 	\begin{itemize}
 		\item \textbf{Base case:}
-			For any tree \(t = a \in \Sigma\) we take a look at the corresponding ground-term \(a \rightarrow q(a)\). Because of the way we defined \(s\) as the meta-state representing the set of all reachable states in a given situation this is inherently correct.
+			For any tree \(t = a \in \Sigma\) we take a look at the rule \(a \rightarrow q(a)\). Because of the way we defined \(s\) as the meta-state representing the set of all reachable states in a given situation this is inherently correct.
 			\\
 		\item \textbf{induction step: \(t = f(q_1,... , q_n)\)}
 			\begin{itemize}
@@ -442,6 +438,7 @@ Just like in the word case there exists a Myhill-Nerode theorem for Finite Tree 
 	Let \(V_n\) be a set of n variables. Then, a linear term \(C \in T_{\Sigma \cup V_n}\) is called a \textbf{context}. Furthermore, \(C[t_1, ..., t_n], t_1, ..., t_n \in T_\Omega\) is known as a \textbf{context application}, meaning that variables \(v_i \in V_n\) are replaced by (sub-)trees \(t_i \in T_\Omega\) with \(T_\Omega \supseteq T_{\Sigma \cup V_n}\)
 	\\\\
 	Note: \(T_\Omega\) \textbf{can} contain new variables.
+	\\\\
 	
 	\begin{minipage}{0.5\textwidth}
 		\begin{center}
@@ -496,11 +493,10 @@ Just like in the word case there exists a Myhill-Nerode theorem for Finite Tree 
 For the sake of easier proofs, we consider all DFTAs as \textbf{complete} and \textbf{reduced}.
 
 \begin{definition}{Completeness and reduction} \cite{wiki-tree-automaton}\\
-A FTA A is \textbf{complete} if there is at least one transition rule available for every possible symbol-states combination. A state \(q\) is \textbf{accessible} if there exists a ground term \(t\) such that \(t \moveStar q\). A NFTA is \textbf{reduced} if all its states are accessible.
+A FTA A is \textbf{complete} if there is at least one transition rule available for every possible symbol-states combination. A state \(q\) is \textbf{accessible} if there exists a tree \(t\) such that \(t \moveStar q\). A NFTA is \textbf{reduced} if all its states are accessible.
 \end{definition}
 
-\textit{Note: All examples for Finite Tree Automata given in this draft are supposed to be complete and reduced. We only do not add a capturing state for all impossible symbol-state combinations for the sake of simplicity. Once such a capturing state would be reached there'd no way to get to another state.}
-\\\\
+\textit{Note: All examples for Finite Tree Automata given in this paper are supposed to be complete and reduced. We do not add a capturing state for all impossible symbol-state combinations for the sake of simplicity. Let \(q_c \in Q\) be the capturing state, then every transition rule that contained it state on the left side look like \(f(..., q_c, ...) \rightarrow q_c\). This means, that once the capturing state is reached, there is no way of getting to a different state anymore.}
 
 \pagebreak
 
@@ -674,8 +670,6 @@ ul(q_{li}, q_{li}) \rightarrow q_{ul}
 	Wim Martens,
 	Stijn Vansummeren,
 	\url{http://lrb.cs.uni-dortmund.de/\textasciitilde martens/data/esslli07/lecture02.pdf}, 03/21/2015
-\bibitem {wiki-groundterm}
-	\url{http://en.wikipedia.org/wiki/Ground\_expression}, 03/16/2015
 \bibitem {wiki-tree-automaton}
 	\url{http://en.wikipedia.org/wiki/Tree\_automaton}, 03/20/2015
 
