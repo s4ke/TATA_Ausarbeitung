@@ -195,7 +195,6 @@ Running a tree automaton can be represented by a series of stages the tree is in
 	\\
 	\centering \textit{The start.}
 	\\~
-	\\~
 \end{minipage}
 \begin{minipage}{0.5\textwidth}
 	~~
@@ -216,7 +215,7 @@ Running a tree automaton can be represented by a series of stages the tree is in
 	\draw [-] (or2) to (true3);
 	\end{tikzpicture}
 	\\
-	\centering \(false\) and \(true,\) \textit{according to our initial rules, are reduced to} \(false \rightarrow q_f\) \textit{and} \(true \rightarrow q_t\).
+	\centering \(false\) and \(true,\) \textit{according to our initial rules, are reduced to} \(q_f\) \textit{and} \(q_t\).
 \end{minipage}
 \\
 \\
@@ -239,7 +238,7 @@ Running a tree automaton can be represented by a series of stages the tree is in
 		\draw [-] (or2) to (true3);
 		\end{tikzpicture}
 	\\
-	\centering \(or(q_f, q_t)\) \textit{and} \(or(q_t, q_t)\) are reduced to \(q_t\) each.
+	\centering \(or(q_f, q_t)\) \textit{and} \(or(q_t, q_t)\) \textit{are reduced to} \(q_t\) \textit{each.}
 \end{minipage}
 \begin{minipage}{0.5\textwidth}
 	~~
