@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.1415926-2.5-1.40.14 (MiKTeX 2.9 64-bit) (preloaded format=pdflatex 2015.3.10)  3 JUN 2015 20:18
+This is pdfTeX, Version 3.1415926-2.5-1.40.14 (MiKTeX 2.9 64-bit) (preloaded format=pdflatex 2015.3.10)  10 JUN 2015 22:16
 entering extended mode
 **main.tex
 (C:\Users\Martin\Documents\GitHub\TATA_Ausarbeitung\main.tex
@@ -662,7 +662,7 @@ File: uwasy.fd 2003/10/30 v2.0 Wasy-2 symbol font definitions
 {C:/ProgramData/MiKTeX/2.9/pdftex/config/pdftex.map}] [2
 
 ]
-Underfull \hbox (badness 10000) in paragraph at lines 153--159
+Underfull \hbox (badness 10000) in paragraph at lines 154--160
 
  []
 
@@ -670,44 +670,79 @@ Underfull \hbox (badness 10000) in paragraph at lines 153--159
 Underfull \vbox (badness 10000) has occurred while \output is active []
 
  [3]
-LaTeX Font Info:    External font `cmex10' loaded for size
-(Font)              <9> on input line 193.
-LaTeX Font Info:    External font `cmex10' loaded for size
-(Font)              <6> on input line 193.
-
-Underfull \hbox (badness 10000) in paragraph at lines 189--273
+Underfull \hbox (badness 10000) in paragraph at lines 190--268
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 189--273
+Overfull \hbox (2.22221pt too wide) in paragraph at lines 190--268
+$[]$ $[]$ 
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 190--268
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 189--273
+Underfull \hbox (badness 10000) in paragraph at lines 190--268
 
  []
 
-[4] [5
+
+Overfull \hbox (2.22221pt too wide) in paragraph at lines 190--268
+$[]$ $[]$ 
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 190--268
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 190--268
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 290--295
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 290--295
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 290--295
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 290--295
+
+ []
+
+[4] [5] [6
 
 ]
-Underfull \hbox (badness 10000) in paragraph at lines 331--334
+Underfull \hbox (badness 10000) in paragraph at lines 353--356
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 337--343
+Underfull \hbox (badness 10000) in paragraph at lines 359--365
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 337--343
+Underfull \hbox (badness 10000) in paragraph at lines 359--365
 
  []
 
 
-Overfull \hbox (9.09274pt too wide) in paragraph at lines 337--343
+Overfull \hbox (9.09274pt too wide) in paragraph at lines 359--365
 \OT1/cmr/m/n/10 ter-miniza-tion al-go-rithm and $\OML/cmm/m/it/10 s \OT1/cmr/m/
 n/10 := \OML/cmm/m/it/10 state\OT1/cmr/m/n/10 (\OMS/cmsy/m/n/10 f\OML/cmm/m/it/
 10 q \OMS/cmsy/m/n/10 2 \OML/cmm/m/it/10 Q []\OMS/cmsy/m/n/10 j []\OML/cmm/m/it
@@ -716,172 +751,154 @@ n/10 := \OML/cmm/m/it/10 state\OT1/cmr/m/n/10 (\OMS/cmsy/m/n/10 f\OML/cmm/m/it/
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 337--343
+Underfull \hbox (badness 10000) in paragraph at lines 359--365
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 343--348
+Underfull \hbox (badness 10000) in paragraph at lines 365--370
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 343--348
+Underfull \hbox (badness 10000) in paragraph at lines 365--370
 
  []
 
 
 Underfull \vbox (badness 10000) has occurred while \output is active []
 
- [6]
-Underfull \hbox (badness 10000) in paragraph at lines 361--381
+ [7]
+Underfull \hbox (badness 10000) in paragraph at lines 383--403
 
  []
 
-LaTeX Font Info:    Try loading font information for OML+cmr on input line 382.
+LaTeX Font Info:    Try loading font information for OML+cmr on input line 404.
 
 ("C:\Program Files\MiKTeX 2.9\tex\latex\base\omlcmr.fd"
 File: omlcmr.fd 1999/05/25 v2.5h Standard LaTeX font definitions
 )
 LaTeX Font Info:    Font shape `OML/cmr/m/n' in size <9> not available
-(Font)              Font shape `OML/cmm/m/it' tried instead on input line 382.
+(Font)              Font shape `OML/cmm/m/it' tried instead on input line 404.
 
-Overfull \hbox (59.63583pt too wide) in paragraph at lines 383--384
+Overfull \hbox (59.63583pt too wide) in paragraph at lines 405--406
 [][][][][][][][][][] 
  []
 
 
-Overfull \hbox (65.18585pt too wide) in paragraph at lines 384--385
+Overfull \hbox (65.18585pt too wide) in paragraph at lines 406--407
 [][][][][][][][][][] 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 402--422
+Underfull \hbox (badness 10000) in paragraph at lines 424--444
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 402--422
+Underfull \hbox (badness 10000) in paragraph at lines 424--444
 
  []
 
-[7]
-Underfull \hbox (badness 10000) in paragraph at lines 428--433
-
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 437--464
+[8]
+Underfull \hbox (badness 10000) in paragraph at lines 450--455
 
  []
 
 
-Overfull \hbox (2.22221pt too wide) in paragraph at lines 437--464
+Underfull \hbox (badness 10000) in paragraph at lines 459--486
+
+ []
+
+
+Overfull \hbox (2.22221pt too wide) in paragraph at lines 459--486
 $[]$ $[]$
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 437--464
+Underfull \hbox (badness 10000) in paragraph at lines 459--486
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 437--464
+Underfull \hbox (badness 10000) in paragraph at lines 459--486
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 465--470
+Underfull \hbox (badness 10000) in paragraph at lines 487--492
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 465--470
+Underfull \hbox (badness 10000) in paragraph at lines 487--492
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 465--470
+Underfull \hbox (badness 10000) in paragraph at lines 487--492
 
  []
 
 
-Overfull \hbox (2.22221pt too wide) in paragraph at lines 471--491
+Overfull \hbox (2.22221pt too wide) in paragraph at lines 493--513
 $[]$ $[]$ 
  []
 
 
 Underfull \vbox (badness 10000) has occurred while \output is active []
 
- [8
+ [9
 
 ]
 Underfull \vbox (badness 3260) has occurred while \output is active []
 
- [9]
-Underfull \hbox (badness 10000) in paragraph at lines 520--525
+ [10]
+Underfull \hbox (badness 10000) in paragraph at lines 542--547
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 520--525
+Underfull \hbox (badness 10000) in paragraph at lines 542--547
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 520--525
+Underfull \hbox (badness 10000) in paragraph at lines 542--547
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 529--532
+Underfull \hbox (badness 10000) in paragraph at lines 551--554
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 532--534
+Underfull \hbox (badness 10000) in paragraph at lines 554--556
 
  []
 
 
 Underfull \vbox (badness 4595) has occurred while \output is active []
 
- [10]
-[11]
-Underfull \hbox (badness 10000) in paragraph at lines 593--595
+ [11]
+[12]
+Underfull \hbox (badness 10000) in paragraph at lines 615--617
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 595--597
+Underfull \hbox (badness 10000) in paragraph at lines 617--619
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 600--626
+Underfull \hbox (badness 10000) in paragraph at lines 622--648
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 600--626
-
- []
-
-
-Underfull \vbox (badness 10000) has occurred while \output is active []
-
- [12]
-Underfull \hbox (badness 10000) in paragraph at lines 640--662
-
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 640--662
-
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 640--662
+Underfull \hbox (badness 10000) in paragraph at lines 622--648
 
  []
 
@@ -889,26 +906,44 @@ Underfull \hbox (badness 10000) in paragraph at lines 640--662
 Underfull \vbox (badness 10000) has occurred while \output is active []
 
  [13]
-Underfull \hbox (badness 10000) in paragraph at lines 680--684
+Underfull \hbox (badness 10000) in paragraph at lines 662--684
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 662--684
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 662--684
+
+ []
+
+
+Underfull \vbox (badness 10000) has occurred while \output is active []
+
+ [14]
+Underfull \hbox (badness 10000) in paragraph at lines 702--706
 []\OT1/cmr/m/n/9 Automata and Logic on Trees, Wim Martens, Stijn Van-sum-meren,
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 685--689
+Underfull \hbox (badness 10000) in paragraph at lines 707--711
 []\OT1/cmr/m/n/9 Automata and Logic on Trees, Wim Martens, Stijn Van-sum-meren,
 
  []
 
-[14] (C:\Users\Martin\Documents\GitHub\TATA_Ausarbeitung\main.aux) ) 
+[15] (C:\Users\Martin\Documents\GitHub\TATA_Ausarbeitung\main.aux) ) 
 Here is how much of TeX's memory you used:
- 16340 strings out of 493921
- 323152 string characters out of 3147279
- 392308 words of memory out of 3000000
- 19380 multiletter control sequences out of 15000+200000
- 11231 words of font info for 40 fonts, out of 3000000 for 9000
+ 16325 strings out of 493921
+ 322999 string characters out of 3147279
+ 394308 words of memory out of 3000000
+ 19371 multiletter control sequences out of 15000+200000
+ 9636 words of font info for 34 fonts, out of 3000000 for 9000
  841 hyphenation exceptions out of 8191
- 48i,16n,66p,789b,1231s stack positions out of 5000i,500n,10000p,200000b,50000s
+ 48i,11n,66p,787b,1232s stack positions out of 5000i,500n,10000p,200000b,50000s
 <C:/Program
  Files/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmbx10.pfb><C:/Program Files/M
 iKTeX 2.9/fonts/type1/public/amsfonts/cm/cmbx12.pfb><C:/Program Files/MiKTeX 2.
@@ -917,20 +952,19 @@ ype1/public/amsfonts/cm/cmbx7.pfb><C:/Program Files/MiKTeX 2.9/fonts/type1/publ
 ic/amsfonts/cm/cmbxti10.pfb><C:/Program Files/MiKTeX 2.9/fonts/type1/public/ams
 fonts/cm/cmcsc10.pfb><C:/Program Files/MiKTeX 2.9/fonts/type1/public/amsfonts/c
 m/cmmi10.pfb><C:/Program Files/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmmi5.
-pfb><C:/Program Files/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmmi6.pfb><C:/P
-rogram Files/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmmi7.pfb><C:/Program Fi
-les/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmmi9.pfb><C:/Program Files/MiKTe
-X 2.9/fonts/type1/public/amsfonts/cm/cmr10.pfb><C:/Program Files/MiKTeX 2.9/fon
-ts/type1/public/amsfonts/cm/cmr12.pfb><C:/Program Files/MiKTeX 2.9/fonts/type1/
-public/amsfonts/cm/cmr5.pfb><C:/Program Files/MiKTeX 2.9/fonts/type1/public/ams
-fonts/cm/cmr7.pfb><C:/Program Files/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/c
-mr9.pfb><C:/Program Files/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmsy10.pfb>
-<C:/Program Files/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmsy7.pfb><C:/Progr
-am Files/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmti10.pfb><C:/Program Files
-/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmti12.pfb>
-Output written on main.pdf (14 pages, 283476 bytes).
+pfb><C:/Program Files/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmmi7.pfb><C:/P
+rogram Files/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmmi9.pfb><C:/Program Fi
+les/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmr10.pfb><C:/Program Files/MiKTe
+X 2.9/fonts/type1/public/amsfonts/cm/cmr12.pfb><C:/Program Files/MiKTeX 2.9/fon
+ts/type1/public/amsfonts/cm/cmr5.pfb><C:/Program Files/MiKTeX 2.9/fonts/type1/p
+ublic/amsfonts/cm/cmr7.pfb><C:/Program Files/MiKTeX 2.9/fonts/type1/public/amsf
+onts/cm/cmr9.pfb><C:/Program Files/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cm
+sy10.pfb><C:/Program Files/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmsy7.pfb>
+<C:/Program Files/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmti10.pfb><C:/Prog
+ram Files/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmti12.pfb>
+Output written on main.pdf (15 pages, 276352 bytes).
 PDF statistics:
- 131 PDF objects out of 1000 (max. 8388607)
+ 130 PDF objects out of 1000 (max. 8388607)
  0 named destinations out of 1000 (max. 500000)
  13 words of extra memory for PDF output out of 10000 (max. 10000000)
 

@@ -149,6 +149,7 @@ We can now define (Non-Deterministic) Finite Tree Automata for tree languages.
 		\(a \rightarrow q(a)\) \\
 		where  \(a \in \Sigma, q \in Q \) \\
 		Note: These rules transition into the initial states of a NFTA
+		\\(that's why we call them initial rules rather informally)
 	\end{center}
 	~\\
 	\textcolor{red}{
@@ -157,7 +158,7 @@ We can now define (Non-Deterministic) Finite Tree Automata for tree languages.
 	\\\\
 	For a tree $t' \in T_{\Sigma \cup Q}$ that is the result of applying a transition rule on a tree $t \in T_{\Sigma \cup Q}$ we write:
 		$$t \rightarrow_A t'$$
-	If zero or more transition rules are applied, we denote it like this:
+	If zero or more transition rules are applied, we write:
 		$$t \moveStar t'$$
 \end{definition}
 
@@ -184,32 +185,43 @@ Our binary-boolean-expression NFTA can now be written as:
 	~~~~~~~~~not(q_f) \rightarrow q_t, not(q_t) \rightarrow q_f\}\)
 \end{example}
 
-A run with the example input from the beginning of this chapter looks like this:
+Running a tree automaton can be represented by a series of stages the tree is in. We will show this now by running the above automaton on the tree from the beginning of this chapter.
 
 \begin{example}{running a NFTA}
 \\
-\begin{table}
-	\centering
-	\begin{tabular}{c c}
-		\simpleTreeExample
-		&
-		\begin{tikzpicture}[auto]
-			\node (and) at (2, 3) {and};
-			\node (or1) at (1, 2) {or};
-			\node (or2) at (3, 2) {or};
-			\node (false1) at (0, 1) {\textcolor{red}{$q_f$}};
-			\node (true1) at (1, 1) {\textcolor{red}{$q_t$}};
-			\node (true2) at (3, 1) {\textcolor{red}{$q_t$}};
-			\node (true3) at (4, 1) {\textcolor{red}{$q_t$}};
-			
-			\draw [-] (and) to (or1);
-			\draw [-] (and) to (or2);
-			\draw [-] (or1) to (false1);
-			\draw [-] (or1) to (true1);
-			\draw [-] (or2) to (true2);
-			\draw [-] (or2) to (true3);
-		\end{tikzpicture}
-		\\
+\\
+\begin{minipage}{0.5\textwidth}
+	\simpleTreeExample
+	\\
+	\centering \textit{The start.}
+	\\~
+	\\~
+\end{minipage}
+\begin{minipage}{0.5\textwidth}
+	~~
+	\begin{tikzpicture}[auto]
+	\node (and) at (2, 3) {and};
+	\node (or1) at (1, 2) {or};
+	\node (or2) at (3, 2) {or};
+	\node (false1) at (0, 1) {\textcolor{red}{$q_f$}};
+	\node (true1) at (1, 1) {\textcolor{red}{$q_t$}};
+	\node (true2) at (3, 1) {\textcolor{red}{$q_t$}};
+	\node (true3) at (4, 1) {\textcolor{red}{$q_t$}};
+	
+	\draw [-] (and) to (or1);
+	\draw [-] (and) to (or2);
+	\draw [-] (or1) to (false1);
+	\draw [-] (or1) to (true1);
+	\draw [-] (or2) to (true2);
+	\draw [-] (or2) to (true3);
+	\end{tikzpicture}
+	\\
+	\centering \(false\) and \(true,\) \textit{according to our initial rules, are reduced to} \(false \rightarrow q_f\) \textit{and} \(true \rightarrow q_t\).
+\end{minipage}
+\\
+\\
+\\
+\begin{minipage}{0.5\textwidth}
 		\begin{tikzpicture}[auto]
 		\node (and) at (2, 3) {and};
 		\node (or1) at (1, 2) {\textcolor{red}{$q_t$}};
@@ -226,48 +238,58 @@ A run with the example input from the beginning of this chapter looks like this:
 		\draw [-] (or2) to (true2);
 		\draw [-] (or2) to (true3);
 		\end{tikzpicture}
-		&
-		\begin{tikzpicture}[auto]
-		\node (and) at (2, 3) {\textcolor{red}{$q_t$}};
-		\node (or1) at (1, 2) {$q_t$};
-		\node (or2) at (3, 2) {$q_t$};
-		\node (false1) at (0, 1) {$q_f$};
-		\node (true1) at (1, 1) {$q_t$};
-		\node (true2) at (3, 1) {$q_t$};
-		\node (true3) at (4, 1) {$q_t$};
-		
-		\draw [-] (and) to (or1);
-		\draw [-] (and) to (or2);
-		\draw [-] (or1) to (false1);
-		\draw [-] (or1) to (true1);
-		\draw [-] (or2) to (true2);
-		\draw [-] (or2) to (true3);
-		\end{tikzpicture}
-		\\
-		\begin{tikzpicture}[auto]
-		\node (and) at (2, 3) {$q_t$};
-		\node (or1) at (1, 2) {$q_t$};
-		\node (or2) at (3, 2) {$q_t$};
-		\node (false1) at (0, 1) {$q_f$};
-		\node (true1) at (1, 1) {$q_t$};
-		\node (true2) at (3, 1) {$q_t$};
-		\node (true3) at (4, 1) {$q_t$};
-		
-		\draw [-] (and) to (or1);
-		\draw [-] (and) to (or2);
-		\draw [-] (or1) to (false1);
-		\draw [-] (or1) to (true1);
-		\draw [-] (or2) to (true2);
-		\draw [-] (or2) to (true3);
-		\end{tikzpicture}
-		&
-		done.
-	\end{tabular}
-\end{table}
+	\\
+	\centering \(or(q_f, q_t)\) \textit{and} \(or(q_t, q_t)\) are reduced to \(q_t\) each.
+\end{minipage}
+\begin{minipage}{0.5\textwidth}
+	~~
+	\begin{tikzpicture}[auto]
+	\node (and) at (2, 3) {\textcolor{red}{$q_t$}};
+	\node (or1) at (1, 2) {$q_t$};
+	\node (or2) at (3, 2) {$q_t$};
+	\node (false1) at (0, 1) {$q_f$};
+	\node (true1) at (1, 1) {$q_t$};
+	\node (true2) at (3, 1) {$q_t$};
+	\node (true3) at (4, 1) {$q_t$};
+	
+	\draw [-] (and) to (or1);
+	\draw [-] (and) to (or2);
+	\draw [-] (or1) to (false1);
+	\draw [-] (or1) to (true1);
+	\draw [-] (or2) to (true2);
+	\draw [-] (or2) to (true3);
+	\end{tikzpicture}
+	\\
+	\centering \(and(q_t, q_t)\) \textit{is reduced to} \(q_t\).
+	\\~
+\end{minipage}
 \\
-Or in written form:\\
+\\
+\begin{center}
+	\begin{tikzpicture}[auto]
+	\node (and) at (2, 3) {$q_t$};
+	\node (or1) at (1, 2) {$q_t$};
+	\node (or2) at (3, 2) {$q_t$};
+	\node (false1) at (0, 1) {$q_f$};
+	\node (true1) at (1, 1) {$q_t$};
+	\node (true2) at (3, 1) {$q_t$};
+	\node (true3) at (4, 1) {$q_t$};
+	
+	\draw [-] (and) to (or1);
+	\draw [-] (and) to (or2);
+	\draw [-] (or1) to (false1);
+	\draw [-] (or1) to (true1);
+	\draw [-] (or2) to (true2);
+	\draw [-] (or2) to (true3);
+	\end{tikzpicture}
+	\\
+	\centering \textit{The final stage.}
+	\\~
+\end{center}
+
+In this graphical representation we kept the states after reducing them. However, this is not needed for running an automaton like the formal version of this run shows:\\\\
 \(and(or(false, true), or(true, true)) \moveStar and(or(q_f, q_t), or(q_t, q_t)) \\ \moveStar and(q_t, q_t) \moveStar q_t \)\\\\
-\(q_t \in Q_f \Rightarrow\) \(A\) accepts \(w\) \(\Rightarrow w \in L_A \) with \(L_A\) being the language recognized by the automaton.
+Since the tree could be reduced to the accepting state \(q_t \in Q_f\), we can say that \(A\) accepts \(w\) and therefore the tree \(w\) is in the language \(L_A\) recognized by the automaton.
 \\
 \\
 \end{example}
