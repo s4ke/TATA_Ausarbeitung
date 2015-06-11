@@ -98,6 +98,8 @@
 
 
 \chapter*{Introduction to Tree Languages}
+
+Regular Tree Languages are a powerful tool when it comes to parsing data given in a textual form. However, they lack in the context of parsing hierarchical data. Using Tree Languages to define your data structure can help with this shortcoming.
 A good example for a tree language is the one consisting of all binary boolean expressions evaluating to true, for which an instance - if formatted in the right way - could look like this:
 
 \begin{center}
@@ -109,6 +111,8 @@ To simplify, the elements of the language are often represented as a tree in a g
 \end{center}
 ~\\
 Just like for regular word languages, it is of interest to know whether a given word (in this case a tree) is part of the (tree-)language. In order to describe an automaton that recognizes tree-languages we have to define what \textbf{\(\Sigma\)-trees} and (regular) \textbf{tree-languages} are, first.
+
+\textcolor{red}{ranked tree alphabet definieren}
 
 \begin{definition}{\(\Sigma\)-tree \cite{automata-xml}}
 	\\
@@ -133,7 +137,7 @@ From that definition, we can see that \(T_\Sigma\) is already a tree-language.
 Next, we have to declare some terminology in the context of $\Sigma-trees$.
 
 \pagebreak
-We can now define (Non-Deterministic) Finite Tree Automata for tree languages.
+We can now define (Non-Deterministic) Finite Tree Automata (NFTA) for tree languages. One can get a good grasp of how they work if you consider them to be NFAs with the possibility to have multiple states in their transition rules.
 
 \begin{definition}{NFTA \cite{tata-nfta}}
 	\\
@@ -146,7 +150,7 @@ We can now define (Non-Deterministic) Finite Tree Automata for tree languages.
 	\end{center}
 	For \(n = 0\), we write:
 	\begin{center}
-		\(a \rightarrow q(a)\) \\
+		\(a \rightarrow q\) \\
 		where  \(a \in \Sigma, q \in Q \) \\
 		Note: These rules transition into the initial states of a NFTA
 		\\(that's why we call them initial rules rather informally)
@@ -163,6 +167,8 @@ We can now define (Non-Deterministic) Finite Tree Automata for tree languages.
 \end{definition}
 
 \pagebreak
+
+\textcolor{red}{reflexive and transitive closure -> Language of an automaton}
 
 Our binary-boolean-expression NFTA can now be written as:
 
@@ -186,6 +192,8 @@ Our binary-boolean-expression NFTA can now be written as:
 \end{example}
 
 Running a tree automaton can be represented by a series of stages the tree is in. We will show this now by running the above automaton on the tree from the beginning of this chapter.
+
+\textcolor{red}{\(\rightarrow_A\) vll genauer definieren, dann hier: erst die Formale Version und dann das Beispiel (abgeschnitten auch)}
 
 \begin{example}{running a NFTA}
 \\
@@ -316,6 +324,8 @@ Non Deterministic Finite Tree Automata (NFTA) can be determinized just like Non 
 
 Similar to the algorithm for Determinization in the word case, there exists a power set construction algorithm for determizing Tree Automata.
 
+\textcolor{red}{powerset benutzen hier}
+
 \begin{definition}{Algorithm DET for Tree Automata \cite{tata-nfta}}\\
 	Note: statesOf(x) returns the set of states that contributed to the creation of the state x, while state(X) returns a state representing all states in the set X.
 \begin{algorithm}[H]
@@ -332,7 +342,7 @@ Similar to the algorithm for Determinization in the word case, there exists a po
 			\(Q_d := Q_d \cup \{s\}\)\\
 			\(\Delta_d := \Delta_d \cup f(s_1,...,s_n) \rightarrow s \)
 		}
-	\(Q_{f_d} := \{ s \in Q_d ~ | ~ \{s\} \cap Q_d \neq \emptyset \}\)\\
+	\(Q_{f_d} := \{ s \in Q_d ~ | ~ \{s\} \cap Q_f \neq \emptyset \}\)\\
 	\KwResult{DFTA \(A_d = (Q_d, \Sigma, Q_{f_d}, \Delta_d) \)}
 \end{algorithm}
 \end{definition}
@@ -378,6 +388,8 @@ It is easy to see that the algorithm produces a deterministic automaton \(A_d\) 
 }
 
 Following is an example of how a NFTA can be determinized with this algorithm.
+
+\textcolor{red}{Beispiel ohne epsilon}
 
 	\begin{example}{Running the DET algorithm}
 		\\
@@ -587,13 +599,12 @@ By using this Corollary and the construction given in the Myhill-Nerode theorem 
 		\While{\(P' \neq P\)} {
 			\(P = P'\)\\
 			\(\forall p_1, p_2, p_3 \in Q, p_1 \neq p_2, p_1 \neq p_3, p_2 \neq p_3,\)\\
-			define \(\neg (p_1P'p_2) \iff\)\\
-			~~~~/* coudln't distinguish to anything in the last cycle */\\
-			\textcolor{red}{ist das hier \(p_3\)? Weil sonst bricht das ja sofort ab...}\\
-			~~~~1.\(\neg(p_1Pp_3)\) or\\
-			~~~~/* can't distinguish \(p_1\) from \(p_2\), yet */\\
+			define \(p_1P'p_2 \iff\)\\
+			~~~~/* could distinguish in the last cycle */\\
+			~~~~1.\(p_1Pp_2\) or\\
+			~~~~/* can distinguish \(p_1\) from \(p_2\), with: */\\
 			~~~~2.\(\exists f \in \Sigma\) with \(n\) arguments, \(\exists q_1, ..., q_{i-1}, q_{i+1}, ..., q_n \in Q\), \\
-			~~~~~ \(\neg(r_1Pr_2), r_1, r_2 \in Q\), where: \\
+			~~~~~ \(r_1Pr_2, r_1, r_2 \in Q\), where: \\
 			~~~~~~~ \(f(q_1, ..., q_{i-1}, p_1, q_{i+1}, ..., q_n) \rightarrow r_1\) and\\
 			~~~~~~~ \(f(q_1, ..., q_{i-1}, p_2, q_{i+1}, ..., q_n) \rightarrow r_2\) \\
 			~~~~~~~ (Note: this works for multiple occurences of \(p_1\) and \(p_2\) as well, \\
