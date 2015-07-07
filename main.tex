@@ -110,20 +110,24 @@ To simplify, the elements of the language are often represented as a tree in a g
 	\simpleTreeExample
 \end{center}
 ~\\
-Just like for regular word languages, it is of interest to know whether a given word (in this case a tree) is part of the (tree-)language. In order to describe an automaton that recognizes tree-languages we have to define what \textbf{\(\Sigma\)-trees} and (regular) \textbf{tree-languages} are, first.
+Just like for regular word languages, it is of interest to know whether a given word (in this case a tree) is part of the (tree-)language. In order to describe an automaton that recognizes tree-languages we have to define what \textbf{ranked tree alphabets}, \textbf{\(\Sigma\)-trees} and (regular) \textbf{tree-languages} are, first.
 
-\textcolor{red}{ranked tree alphabet definieren}
+\begin{definition}{ranked tree alphabet}
+	\\
+	A \textbf{ranked tree alphabet} \(\Sigma\) of \textbf{arity} \(n\) is a refinement of an ordinary alphabet such that each symbol \(\sigma \in \Sigma\) either has zero or exactly \(n\) arguments. Symbols with zero arguments are called \textbf{constants}.
+\end{definition}
+\textit{Note: There also exists a definition for tree alphabets that dont have the restriction of arity. These trees are so called \textbf{unranked tree alphabets}, but in this paper we will only take a look at the ranked case.}
+
+\textcolor{red}{alle Beispiele muessen diese Art der Notation dann auch benutzen}
 
 \begin{definition}{\(\Sigma\)-tree \cite{automata-xml}}
 	\\
-	The set of \(\Sigma\)-trees \(T_\Sigma\) over the \textbf{alphabet \(\Sigma\)} is inductively defined as follows:
+	The set of \(\Sigma\)-trees \(T_\Sigma\) over the ranked tree alphabet \(\Sigma\) of arity \(n\) is inductively defined as follows:
 	\begin{center}
 		1. every \(\sigma \in \Sigma\) is a \(\Sigma\)-tree\\
-		2. \(\sigma \in \Sigma\) and \(t_1,...,t_n \in T_\Sigma, n \ge 1 \iff \sigma(t_1,...,t_n) \in T_\Sigma\) 
+		2. \(\sigma \in \Sigma\) and \(t_1,...,t_n \in T_\Sigma \iff \sigma(t_1,...,t_n) \in T_\Sigma\) 
 	\end{center}
 \end{definition}
-~\\
-\textit{Note: In general, there is no bound for the number of children in a tree (these trees are called \textit{unranked}), but in this paper we will only take a look at \textbf{ranked trees}, which have such a bound.}
 
 \begin{definition}{tree-language \cite{automata-xml}}
 	\\
@@ -624,7 +628,7 @@ While we are not giving a complete proof for this algorithm, we can at least go 
 \begin{itemize}
 	\item In the while loop we are marking all tuples \(p_1, p_2\) as distinguishable when they are added to the relation
 	\\
-	\item In order to get the equivalence classes for \(Q_{min}\), we are merging all pairs of indistinguishable states to a new one representing both. After having done this incrementally for all not marked combinations, these "artificial" states have to be distinguishable to all other states and \(Q_{min}\) must therefore be minimal. This can easily be proven correct by contradiction.
+	\item To get the equivalence classes for \(Q_{min}\), we are merging all pairs of indistinguishable states to a new one representing both. After having done this incrementally for all not marked combinations, these "artificial" states have to be distinguishable to all other states and \(Q_{min}\) must therefore be minimal. This can easily be proven correct by contradiction.
 	\\
 	\item It isn't hard to see that the construction of \(Q_{f_{min}}\) and \(\Delta_{min} \) is correct.
 \end{itemize}
