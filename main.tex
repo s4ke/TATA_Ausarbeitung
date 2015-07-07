@@ -162,20 +162,21 @@ We can now define (Non-Deterministic) Finite Tree Automata (NFTA) for tree langu
 		\\(that's why we call them initial rules rather informally)
 	\end{center}
 	~\\
-	\textcolor{red}{
-	An automaton starts at
-	the leaves and moves upward, inductively associating along a \textbf{run} each subterm to a state while reducing the tree via the transition rules.}
+	These transition rules are applied from the bottom up to a given input tree. By doing so, the tree is reduced until no transition rule can be found. A tree $t \in T_{\Sigma \cup Q}$ can be reduced to another tree $t' \in T_{\Sigma \cup Q}$ iff they only differ in one sub-tree such that \(t\) contains \(t_{sub}  = \sigma(q_1,..., q_n), \sigma \in \Sigma\) and \(t'\) contains \(t'_{sub} = q, q \in Q\) (both being at the exact same spot respectively) and a transition rule \(\delta \in \Delta, \delta = \sigma(q_1,..., q_n) \rightarrow q\) exists.
+	\\
+	\\
+	Note: This definition also applies for reductions on constants. The only difference being that \(\sigma\) doesn't have any arguments in that case.
 	\\\\
-	For a tree $t' \in T_{\Sigma \cup Q}$ that is the result of applying a transition rule on a tree $t \in T_{\Sigma \cup Q}$ we write:
+	We denote such a relation with:
 		$$t \rightarrow_A t'$$
 	If zero or more transition rules are applied, we write:
 		$$t \moveStar t'$$
-	If a given input tree \(t_{input}\) can be reduced to only a single state \(q \in Q_f\), then it is accepted by \(A\). The set of all input trees accepted by \(A\) is called the \textbf{Language of A}, which is denoted by \(L_A\).
+	If a given input tree \(t_{input}\) can be reduced to a tree \(t_{final} = q, q \in Q_f\), then it is accepted by \(A\). The set of all input trees accepted by \(A\) is called the \textbf{Language of A}, which is denoted by \(L_A\).
 \end{definition}
 
 \pagebreak
 
-\textcolor{red}{reflexive and transitive closure -> Language of an automaton}
+\textcolor{red}{reflexive and transitive closure?}
 
 Our binary-boolean-expression NFTA can now be written as:
 
