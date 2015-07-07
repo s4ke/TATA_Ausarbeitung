@@ -112,11 +112,11 @@ To simplify, the elements of the language are often represented as a tree in a g
 ~\\
 Just like for regular word languages, it is of interest to know whether a given word (in this case a tree) is part of the (tree-)language. In order to describe an automaton that recognizes tree-languages we have to define what \textbf{ranked tree alphabets}, \textbf{\(\Sigma\)-trees} and (regular) \textbf{tree-languages} are, first.
 
-\begin{definition}{ranked tree alphabet}
+\begin{definition}{ranked tree alphabet} \cite{tata-nfta}\cite{wiki-tree-automaton}
 	\\
 	A \textbf{ranked tree alphabet} \(\Sigma\) of \textbf{arity} \(n\) is a refinement of an ordinary alphabet such that each symbol \(\sigma \in \Sigma\) either has zero or exactly \(n\) arguments. Symbols with zero arguments are called \textbf{constants}.
 \end{definition}
-\textit{Note: There also exists a definition for tree alphabets that dont have the restriction of arity. These trees are so called \textbf{unranked tree alphabets}, but in this paper we will only take a look at the ranked case.}
+\textit{Note: There also exists a definition for tree alphabets that dont have the restriction of arity. These are called \textbf{unranked tree alphabets}, but in this paper we will only take a look at the ranked case.}
 
 \textcolor{red}{alle Beispiele muessen diese Art der Notation dann auch benutzen}
 
@@ -129,6 +129,8 @@ Just like for regular word languages, it is of interest to know whether a given 
 	\end{center}
 \end{definition}
 
+\pagebreak
+
 \begin{definition}{tree-language \cite{automata-xml}}
 	\\
 	A tree language \(L_{t\Sigma}\) over the alphabet \(\Sigma\) is defined as a subset of \(T_\Sigma\):
@@ -139,20 +141,20 @@ Just like for regular word languages, it is of interest to know whether a given 
 
 From that definition, we can see that \(T_\Sigma\) is already a tree-language.
 Next, we have to declare some terminology in the context of $\Sigma-trees$.
-
-\pagebreak
+\\
+\\
 We can now define (Non-Deterministic) Finite Tree Automata (NFTA) for tree languages. One can get a good grasp of how they work if you consider them to be NFAs with the possibility to have multiple states in their transition rules.
 
 \begin{definition}{NFTA \cite{tata-nfta}}
 	\\
-	A (Non-Deterministic) Finite Tree Automaton (NFTA) over the alphabet \(\Sigma\) is a tuple \(A = (Q, \Sigma, Q_f ,\Delta)\) where
+	A (Non-Deterministic) Finite Tree Automaton (NFTA) over the alphabet \(\Sigma\) of arity \(n\) is a tuple \(A = (Q, \Sigma, Q_f ,\Delta)\) where
 	\(Q\) is a \textbf{finite set of states}, \(Q_f \subseteq Q\) is a  \textbf{finite set of final states}, and \(\Delta\) is a \textbf{finite set of transition rules} of the type:
 	
 	\begin{center}
 		\(f(q_1,...,q_n) \rightarrow q_x\) \\
-		where \(n \ge 0, f \in \Sigma, q_x, q_1,...,q_n \in Q \)
+		where \(f \in \Sigma, q_x, q_1,...,q_n \in Q \)
 	\end{center}
-	For \(n = 0\), we write:
+	For \(constants\), we write:
 	\begin{center}
 		\(a \rightarrow q\) \\
 		where  \(a \in \Sigma, q \in Q \) \\
@@ -168,6 +170,7 @@ We can now define (Non-Deterministic) Finite Tree Automata (NFTA) for tree langu
 		$$t \rightarrow_A t'$$
 	If zero or more transition rules are applied, we write:
 		$$t \moveStar t'$$
+	If a given input tree \(t_{input}\) can be reduced to only a single state \(q \in Q_f\), then it is accepted by \(A\). The set of all input trees accepted by \(A\) is called the \textbf{Language of A}, which is denoted by \(L_A\).
 \end{definition}
 
 \pagebreak
@@ -195,7 +198,7 @@ Our binary-boolean-expression NFTA can now be written as:
 	~~~~~~~~~not(q_f) \rightarrow q_t, not(q_t) \rightarrow q_f\}\)
 \end{example}
 
-Running a tree automaton can be represented by a series of stages the tree is in. We will show this now by running the above automaton on the tree from the beginning of this chapter.
+Running a tree automaton can be represented by a series of stages the tree is in. We will now show this by running the above automaton on the tree from the beginning of this chapter.
 
 \textcolor{red}{\(\rightarrow_A\) vll genauer definieren, dann hier: erst die Formale Version und dann das Beispiel (abgeschnitten auch)}
 
@@ -549,8 +552,6 @@ A FTA A is \textbf{complete} if there is at least one transition rule available 
 \end{definition}
 
 \textit{Note: All examples for Finite Tree Automata given in this paper are supposed to be complete and reduced. However, we do not add a capturing state for all impossible symbol-state combinations for the sake of simplicity. Let \(q_c \in Q\) be the capturing state, then every transition rule that contained it state on the left side look like \(f(..., q_c, ...) \rightarrow q_c\). This means, that once the capturing state is reached, there is no way of getting to a different state anymore.}
-
-\pagebreak
 
 We can now give the Myhill-Nerode theorem.
 
