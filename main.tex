@@ -372,8 +372,7 @@ Following is an example of how a NFTA can be determinized with this algorithm.
 		\(\Delta = \{
 		ul(q_{li1},q_{li2}) \rightarrow q_{ul}, ul(q_{li2},q_{li1}) \rightarrow q_{ul}, \newline
 		\mathbf{li(q_{text}) \rightarrow q_{li1}, li(q_{text}) \rightarrow q_{li2},}\newline
-		text \rightarrow q_{text}, empty \rightarrow q_{empty}, \newline
-		\mathbf{\epsilon(q_{empty}) \rightarrow q_{text}}
+		text \rightarrow q_{text}, empty \rightarrow q_{text}
 		\}\)
 		\\\\
 		This recognizes all trees that represent unordered lists (ul) in HTML notation, which contain 2 list items (li):
@@ -409,11 +408,11 @@ Following is an example of how a NFTA can be determinized with this algorithm.
 					\newline
 					text \rightarrow state(\{q_{text}\})
 					\newline
-					empty \rightarrow state(\{q_{text}, q_{empty}\})\)
+					empty \rightarrow state(\{q_{text}\})\)
 					\\
 					\(li(state(\{q_{text}\}))) \rightarrow state(\{q_{li1}, q_{li2}\})\)
 					\newline
-					\(li(state(\{q_{text}, q_{empty}\})) \rightarrow state(\{q_{li1}, q_{li2}\})
+					\(li(state(\{q_{text}\})) \rightarrow state(\{q_{li1}, q_{li2}\})
 					\newline
 					ul(state(\{q_{li1}, q_{li2}\}), state(\{q_{li1}, q_{li2}\})) \rightarrow state(\{q_{ul}\})
 					\)
@@ -422,7 +421,7 @@ Following is an example of how a NFTA can be determinized with this algorithm.
 				    And the set of final states is \(Q_{f_d} = \{state(\{q_{ul}\})\}\).
 				    \\
 				    \\
-				    As we can see, there is no \(\epsilon\)-rule left and we don't have to choose which rule to apply when reading 
+				    As we can see, no un-deterministic behaviour can be found in this automaton anymore.
 			\end{example}
 
 \pagebreak
@@ -496,14 +495,14 @@ Defining a Context is straightforward now.
 \begin{definition}{Congruence} \cite{tata-nfta} \\
 	An equivalence relation \(\equiv\)  on \(T_\Sigma\) is a \textbf{congruence} on \(T_\Sigma\) if for every \(f \in \Sigma\) with \(n\) arguments applies:
 	\begin{center}
-		\(T_\Sigma \ni u_i \equiv w_i \in T_\Sigma, 1 \leq i \leq n \Rightarrow f(u_1, ..., u_n) \equiv f(w_1, ..., w_n)\)\\
-		\(\#~of \equiv-classes~is~finite \Rightarrow \equiv\) is of \textbf{finite index}.
+		\(u_i \equiv w_i, u_i, w_i \in T_\Sigma, 1 \leq i \leq n \Rightarrow f(u_1, ..., u_n) \equiv f(w_1, ..., w_n)\)\\
+		\(number~of \equiv-classes~is~finite \Rightarrow \equiv\) is of \textbf{finite index}.
 	\end{center}
 	Additionally a congruence is an equivalence relation closed under context. This means that for any \(C \in T_{\Sigma \cup V}\), if \(u \equiv w \Rightarrow C[u] \equiv C[w]\).
 \end{definition}
 
 \begin{definition}{\(\equiv_L\)} \cite{tata-nfta} \\
-	For any given tree language \(L \in T_\Sigma\), we define the congruence \(\equiv_L\) on \(T_\Sigma\) by: \(T_\Sigma \ni u \equiv_L w \in T_\Sigma\), if for all Contexts \(C \in T_{\Sigma \cup V}\) applies:
+	For any given tree language \(L \in T_\Sigma\), we define the congruence \(\equiv_L\) on \(T_\Sigma\) by: \(u \equiv_L w, u,w \in T_\Sigma\), if for all Contexts \(C \in T_{\Sigma \cup V}\) applies:
 	\begin{center}
 		\(C[u] \in L \iff C[v] \in L\)
 	\end{center}
@@ -515,8 +514,8 @@ For the sake of easier proofs, we consider all following DFTAs to be \textbf{com
 A FTA A is \textbf{complete} if there is at least one transition rule available for every possible symbol-states combination. A state \(q\) is \textbf{accessible} if there exists a tree \(t\) such that \(t \moveStar q\). A NFTA is \textbf{reduced} if all its states are accessible.
 \end{definition}
 
-\textit{Note: All examples for Finite Tree Automata given in this paper are supposed to be complete and reduced. However, we do not add a capturing state for all impossible symbol-state combinations for the sake of simplicity. Let \(q_c \in Q\) be the capturing state, then every transition rule that contained it state on the left side look like \(f(..., q_c, ...) \rightarrow q_c\). This means, that once the capturing state is reached, there is no way of getting to a different state anymore.}
-
+\textit{Note: All examples for Finite Tree Automata given in this paper are supposed to be complete and reduced. However, we do not add a capturing state for all impossible symbol-state combinations for the sake of simplicity. Let \(q_c \in Q\) be the capturing state, then every transition rule that contained it state on the left side looks like \(f(..., q_c, ...) \rightarrow q_c\). This means, that once the capturing state is reached, there is no way of getting to a different state anymore.}
+\\\\
 We can now give the Myhill-Nerode theorem.
 
 \begin{theorem}{Myhill-Nerode} \cite{tata-nfta}\\
@@ -529,16 +528,16 @@ We can now give the Myhill-Nerode theorem.
 \begin{proof}{~}
 	\begin{itemize}
 		\item (i) \(\Rightarrow\) (ii): Assume that the tree language \(L\) is recognized by some complete DFTA \(A = (Q, \Sigma, Q_f, \delta)\) with \(\delta\) being a transition function (i).
-		Let us consider the relation \(\equiv_A\) defined on \(T_\Sigma\) by: \(T_\Sigma \ni u \equiv v \in T_\Sigma\), if \(\delta(u) = \delta(v)\). Since we know that \(Q\) only has a finite amount of states in it and the number of equivalence classes may at most be equal to the size of \(Q\), we can deduce that \(\equiv_A\) is a congruence of finite index (ii).
+		Let us consider the relation \(\equiv_A\) defined on \(T_\Sigma\) by: \(u \equiv v, u,v \in T_\Sigma\), if \(\delta(u) = \delta(v)\). Since we know that \(Q\) only has a finite amount of states in it and the number of equivalence classes may at most be equal to the size of \(Q\), we can deduce that \(\equiv_A\) is a congruence of finite index (ii).
 		\\
-		\item (ii) \(\Rightarrow\) (iii): By denoting the congruence of finite index as \(\cong\) and assuming that \(T_\Sigma \ni u \cong v \in T_\Sigma\), it can be proven that \(C[u] \cong C[v]\) for all contexts \(C \in T_{\Sigma \cup V} \) by an easy induction on the structure of terms. Since \(L\) is the union of some equivalence classes of the congruence of finite index \(\cong\) (ii), we have \(C[u] \in L \iff C[v] \in L \). Therefore we know that  \( u \equiv_L v \) and that \( \equiv_L \) contains the equivalence class of u in \( \cong \). Furthermore we now know that \(index(\equiv_L) \leq index(\cong) \Rightarrow index(\equiv_L)~is~finite \) (iii).
+		\item (ii) \(\Rightarrow\) (iii): By denoting the congruence of finite index as \(\cong\) and assuming that \(u \cong v, u,v \in T_\Sigma\), it can be proven that \(C[u] \cong C[v]\) for all contexts \(C \in T_{\Sigma \cup V} \) by an easy induction on the structure of terms. Since \(L\) is the union of some equivalence classes of the congruence of finite index \(\cong\) (ii), we have \(C[u] \in L \iff C[v] \in L \). Therefore we know that  \( u \equiv_L v \) and that \( \equiv_L \) contains the equivalence class of u in \( \cong \). Furthermore we now know that \(index(\equiv_L) \leq index(\cong) \Rightarrow index(\equiv_L)~is~finite \) (iii).
 		\\
 		\item (iii) \(\Rightarrow\) (i):
 		 By representing the set of equivalence classes of \( \equiv_L \) (iii) as the finite set of states \(Q_{min}\) with \(|Q_{min}| = |\equiv_L|\), we know that every equivalence class has its own state. By denoting the equivalence class of a term \(u \in T_\Sigma\) as \([u]\) we define the transition function \(\delta_{min}\) for every \( f \in \Sigma\) with \(n\) arguments as:
 		 \begin{center}
 			 \(\delta_{min}(f, [u_1], ..., [u_n]) = [f(u_1, ..., u_n)]\)
 		 \end{center}
-		 The definition of \(\delta\) is consistent because \(\equiv_L\) is a congruence. With \(Q_{min_f} := \{ [u] | u \in L \}\) the resulting DFTA \(A_{min} := (Q_{min}, \Sigma, Q_{min_f}, \delta_{min}\) recognizes the tree language \(L\) (i). 
+		 The definition of \(\delta\) is consistent because \(\equiv_L\) is a congruence. With \(Q_{min_f} := \{ [u] | u \in L \}\) the resulting DFTA \(A_{min} := (Q_{min}, \Sigma, Q_{min_f}, \delta_{min})\) recognizes the tree language \(L\) (i). 
 		 \qed
 	\end{itemize}
 \end{proof}
@@ -567,7 +566,7 @@ By using this Corollary and the construction given in the Myhill-Nerode theorem 
 		Set \(P' = P\)\\
 		\While{\(P' \neq P\)} {
 			\(P = P'\)\\
-			\(\forall p_1, p_2, p_3 \in Q, p_1 \neq p_2, p_1 \neq p_3, p_2 \neq p_3,\)\\
+			\(\forall p_1, p_2 \in Q, p_1 \neq p_2\)\\
 			define \(p_1P'p_2 \iff\)\\
 			~~~~/* could distinguish in the last cycle */\\
 			~~~~1.\(p_1Pp_2\) or\\
@@ -599,6 +598,7 @@ While we are not giving a complete proof for this algorithm, we can at least go 
 \end{itemize}
 
 \begin{example}{Running the MIN algorithm}\\
+	\textcolor{red}{anderen Satz hier, wird nicht ganz klar, woher der Automat kommt. Muss ja nicht unbedingt aus dem vorherigen Beispiel stammen}
 After cleaning up the Automaton of our previous unordered list example, one might already see that it isn't minimal yet:\\\\
 				\automatonDefinition
 				\(\Sigma = \{ul, li, text, empty\}\)
