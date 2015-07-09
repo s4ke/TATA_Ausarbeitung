@@ -75,6 +75,7 @@
 }
 
 \newcommand{\moveStar}{\rightarrow_A^*}
+\newcommand{\move}{\rightarrow_A}
 \newcommand{\moveStarDet}{\rightarrow_{A_d}^*}
 
 \newcommand{\simpleTreeExample} {
@@ -117,8 +118,6 @@ Just like for regular word languages, it is of interest to know whether a given 
 	A \textbf{ranked tree alphabet} \(\Sigma\) of \textbf{arity} \(n\) is a refinement of an ordinary alphabet such that each symbol \(\sigma \in \Sigma\) either has zero or exactly \(n\) arguments. Symbols with zero arguments are called \textbf{constants}.
 \end{definition}
 \textit{Note: There also exists a definition for tree alphabets that dont have the restriction of arity. These are called \textbf{unranked tree alphabets}, but in this paper we will only take a look at the ranked case.}
-
-\textcolor{red}{alle Beispiele muessen diese Art der Notation dann auch benutzen}
 
 \begin{definition}{\(\Sigma\)-tree \cite{automata-xml}}
 	\\
@@ -169,14 +168,12 @@ We can now define (Non-Deterministic) Finite Tree Automata (NFTA) for tree langu
 	\\\\
 	We denote such a relation with:
 		$$t \rightarrow_A t'$$
-	If zero or more transition rules are applied, we write:
+	If one or more transition rules are applied, we write:
 		$$t \moveStar t'$$
 	If a given input tree \(t_{input}\) can be reduced to a tree \(t_{final} = q, q \in Q_f\), then it is accepted by \(A\). The set of all input trees accepted by \(A\) is called the \textbf{Language of A}, which is denoted by \(L_A\).
-\end{definition}
+\end{definition}	
 
 \pagebreak
-
-\textcolor{red}{reflexive and transitive closure?}
 
 Our binary-boolean-expression NFTA can now be written as:
 
@@ -184,7 +181,7 @@ Our binary-boolean-expression NFTA can now be written as:
 	\\
 	\(A = (Q, \Sigma, Q_f ,\Delta)\)
 	\newline
-	\(\Sigma = \{or, and, not, true,false\}\)
+	\(\Sigma = \{or, and, not, true, false\}\)
 	\newline
 	\(Q = \{q_f,q_t\}\)
 	\newline
@@ -199,11 +196,21 @@ Our binary-boolean-expression NFTA can now be written as:
 	~~~~~~~~~not(q_f) \rightarrow q_t, not(q_t) \rightarrow q_f\}\)
 \end{example}
 
-Running a tree automaton can be represented by a series of stages the tree is in. We will now show this by running the above automaton on the tree from the beginning of this chapter.
+We will now show how the above automaton processes the tree from the beginning of this chapter.
 
-\textcolor{red}{\(\rightarrow_A\) vll genauer definieren, dann hier: erst die Formale Version und dann das Beispiel (abgeschnitten auch)}
-
-\begin{example}{running a NFTA}
+\begin{example}{running a NFTA}\\
+\\\(and(or(false, true), or(true, true)) 
+\\\move and(or(q_f, true), or(true, true)) 
+\\ \move and(or(q_f, q_t), or(true, true)) 
+\\\move and(or(q_f, q_t), or(q_t, true)) 
+\\\move and(or(q_f, q_t), or(q_t, q_t))
+\\\move and(q_t, or(q_t, q_t))
+\\\move and(q_t, q_t)
+\\\move q_t \)\\\\
+We see that the tree can successfully be reduced to the accepting state \(q_t \in Q_f\) and therefore that \(A\) accepts \(w\) and that \(w\) is in the language \(L_A\) recognized by the automaton.
+\\
+\\
+This process can be represented in a graphical way as well. In order to keep things shorter, we condensed some of the steps together, but the general point is still visible.
 \\
 \\
 \begin{minipage}{0.5\textwidth}
@@ -237,42 +244,22 @@ Running a tree automaton can be represented by a series of stages the tree is in
 \\
 \\
 \begin{minipage}{0.5\textwidth}
-		\begin{tikzpicture}[auto]
-		\node (and) at (2, 3) {and};
-		\node (or1) at (1, 2) {\textcolor{red}{$q_t$}};
-		\node (or2) at (3, 2) {\textcolor{red}{$q_t$}};
-		\node (false1) at (0, 1) {$q_f$};
-		\node (true1) at (1, 1) {$q_t$};
-		\node (true2) at (3, 1) {$q_t$};
-		\node (true3) at (4, 1) {$q_t$};
-		
-		\draw [-] (and) to (or1);
-		\draw [-] (and) to (or2);
-		\draw [-] (or1) to (false1);
-		\draw [-] (or1) to (true1);
-		\draw [-] (or2) to (true2);
-		\draw [-] (or2) to (true3);
-		\end{tikzpicture}
+	~~~~~
+	\begin{tikzpicture}[auto]
+	\node (and) at (2, 3) {and};
+	\node (or1) at (1, 2) {\textcolor{red}{$q_t$}};
+	\node (or2) at (3, 2) {\textcolor{red}{$q_t$}};
+	
+	\draw [-] (and) to (or1);
+	\draw [-] (and) to (or2);
+	\end{tikzpicture}
 	\\
 	\centering \(or(q_f, q_t)\) \textit{and} \(or(q_t, q_t)\) \textit{are reduced to} \(q_t\) \textit{each.}
 \end{minipage}
 \begin{minipage}{0.5\textwidth}
-	~~
+	~~~~~~~~
 	\begin{tikzpicture}[auto]
 	\node (and) at (2, 3) {\textcolor{red}{$q_t$}};
-	\node (or1) at (1, 2) {$q_t$};
-	\node (or2) at (3, 2) {$q_t$};
-	\node (false1) at (0, 1) {$q_f$};
-	\node (true1) at (1, 1) {$q_t$};
-	\node (true2) at (3, 1) {$q_t$};
-	\node (true3) at (4, 1) {$q_t$};
-	
-	\draw [-] (and) to (or1);
-	\draw [-] (and) to (or2);
-	\draw [-] (or1) to (false1);
-	\draw [-] (or1) to (true1);
-	\draw [-] (or2) to (true2);
-	\draw [-] (or2) to (true3);
 	\end{tikzpicture}
 	\\
 	\centering \(and(q_t, q_t)\) \textit{is reduced to} \(q_t\).
@@ -283,30 +270,11 @@ Running a tree automaton can be represented by a series of stages the tree is in
 \begin{center}
 	\begin{tikzpicture}[auto]
 	\node (and) at (2, 3) {$q_t$};
-	\node (or1) at (1, 2) {$q_t$};
-	\node (or2) at (3, 2) {$q_t$};
-	\node (false1) at (0, 1) {$q_f$};
-	\node (true1) at (1, 1) {$q_t$};
-	\node (true2) at (3, 1) {$q_t$};
-	\node (true3) at (4, 1) {$q_t$};
-	
-	\draw [-] (and) to (or1);
-	\draw [-] (and) to (or2);
-	\draw [-] (or1) to (false1);
-	\draw [-] (or1) to (true1);
-	\draw [-] (or2) to (true2);
-	\draw [-] (or2) to (true3);
 	\end{tikzpicture}
 	\\
-	\centering \textit{The final stage.}
+	\centering \textit{The final result.}
 	\\~
 \end{center}
-
-In this graphical representation we kept the states after reducing them. However, this is not needed for running an automaton like the formal version of this run shows:\\\\
-\(and(or(false, true), or(true, true)) \moveStar and(or(q_f, q_t), or(q_t, q_t)) \\ \moveStar and(q_t, q_t) \moveStar q_t \)\\\\
-Since the tree could be reduced to the accepting state \(q_t \in Q_f\), we can say that \(A\) accepts \(w\) and therefore the tree \(w\) is in the language \(L_A\) recognized by the automaton.
-\\
-\\
 \end{example}
 
 \chapter*{Determinization}
@@ -320,11 +288,6 @@ Non Deterministic Finite Tree Automata (NFTA) can be determinized just like Non 
 		\(f(q_1,..., q_n) \rightarrow q_x\)\\
 		\(f(q_1,...,q_n) \rightarrow q_y\)\\
 		with \(q_x \neq q_y\) \\
-	\end{center}
-	or
-	\begin{center}
-		\(\epsilon(q_1, ..., q_n) \rightarrow q_x\)\\
-		(state changes, even though no actual symbol is read)
 	\end{center}
 	with \(n \ge 0, q_x,q_y,q_1,...q_n \in Q, q_x \neq q_y, f \in \Sigma\)
 	is called a \textbf{Deterministic Finite Tree Automaton} (DFTA).
