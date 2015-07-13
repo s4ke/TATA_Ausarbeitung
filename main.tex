@@ -13,6 +13,7 @@
 \usepackage{wasysym}
 \usepackage{listings}
 \usepackage[]{algorithm2e}
+\SetKwRepeat{Do}{do}{while}
 \usepackage{caption}
 
 \usetikzlibrary{arrows,automata,positioning}
@@ -295,21 +296,24 @@ Non Deterministic Finite Tree Automata (NFTA) can be determinized just like Non 
 
 Similar to the algorithm for Determinization in the word case, there exists a power set construction algorithm for determizing Tree Automata.
 
-\textcolor{red}{powerset benutzen hier}
-
 \begin{definition}{Algorithm DET for Tree Automata \cite{tata-nfta}}\\
-	Note: statesOf(x) returns the set of states that contributed to the creation of the state x, while state(X) returns a state representing all states in the set X.
 \begin{algorithm}[H]
 	\KwData{NFTA \(A = (Q, \Sigma, Q_f ,\Delta)\)}
 	\(Q_d := \emptyset\)\\
 	\(\Delta_d := \emptyset\)
 	\\
-		\While{\(\Delta_d\) grew last cycle} {
-			\( f(q_1,...,q_n) \in \Delta\)\\
-			\(s_1,...,s_n \in Q_d\)\\
+		\Repeat{no rule can be added to \(\Delta_d\)} {
+			choose \( f \in \Sigma\), \(s_1,...,s_n \in Q_d\)\\
 			~\\
 			/* meta-state representing the set of reachable states */ \\
-			\( s := state(\{ q \in Q ~|~ q_1 \in statesOf(s_1),..., q_n \in statesOf(s_n), f(q_1,...q_n) \rightarrow q \in \Delta \}) \)\\~\\
+			\eIf {\(f~is~not~constant\)} {
+				\( s := \{ q \in Q ~|~ \exists q_1 \in s_1,..., \exists q_n \in s_n, f(q_1,...q_n)
+			 \rightarrow q \in \Delta \} \)
+			} {
+				\( s := \{ q \in Q ~|~
+				f \rightarrow q \in \Delta \} \)
+			}
+			~\\
 			\(Q_d := Q_d \cup \{s\}\)\\
 			\(\Delta_d := \Delta_d \cup f(s_1,...,s_n) \rightarrow s \)
 		}
@@ -323,7 +327,7 @@ Similar to the algorithm for Determinization in the word case, there exists a po
 It is easy to see that the algorithm produces a deterministic automaton \(A_d\) as we are automatically constructing meta-states for all reachable states and therefore eliminating all possible non-deterministic behaviour. However, we still have to prove \(L(A) = L(A_d)\). For this, we have to show that the meta-states \(s \in Q_d\) are "built correctly", or in formal terms:
 
 \begin{center}
-	\(For~any~tree~t: t \moveStarDet s \iff s = state(\{q \in Q ~|~ t \moveStar q\})\)
+	\(For~any~tree~t \in T_{\Sigma \cup Q}: t \moveStarDet s \iff s = \{q \in Q ~|~ t \moveStar q\}\)
 \end{center}
 
 
@@ -331,20 +335,20 @@ It is easy to see that the algorithm produces a deterministic automaton \(A_d\) 
 	This proof is done via an induction over the structure of the symbols in \(\Sigma\).
 	\begin{itemize}
 		\item \textbf{Base case:}
-			For any tree \(t = a \in \Sigma\) we take a look at the rule \(a \rightarrow q(a)\). Because of the way we defined \(s\) as the meta-state representing the set of all reachable states in a given situation this is inherently correct.
+			For any tree \(t = a \in \Sigma\) we only have the rule \(a \rightarrow s \in \Delta_d\). Because of the way we defined \(s\) as the meta-state representing the set of all reachable states in a given situation this is inherently correct.
 			\\
-		\item \textbf{induction step: \(t = f(q_1,... , q_n)\)}
+		\item \textbf{induction step: \(t = f(t_1,... , t_n)\)}
 			\begin{itemize}
 				\item 
-				1.: \(t \moveStarDet s \Rightarrow (s = state(\{q \in Q ~|~ t \moveStar q\})\)\\\\
-				Supposing \(t \moveStarDet f(s_1, ..., s_n) \rightarrow_{A_d} s\), by induction hypothesis, for each \(i \in {1,..., n}\), we can see \(s_i = state(\{q \in Q ~|~ q_i \moveStar q\}\).\\
+				1.: \(t \moveStarDet s \Rightarrow s = \{q \in Q ~|~ t \moveStar q\}\)\\\\
+				Supposing \(t \moveStarDet f(s_1, ..., s_n) \rightarrow_{A_d} s\), by induction hypothesis, for each \(i \in {1,..., n}\), we can see \(s_i = \{q \in Q ~|~ q_i \moveStar q\}\).\\
 				\\
-			    Because states \(s_i \in Q_d\), rules \(f(s_1, ..., s_n) \rightarrow s \in \Delta_d\) are added by the determinization algorithm and \( s := state(\{ q \in Q ~|~ q_1 \in statesOf(s_1),..., q_n \in statesOf(s_n), f(q_1,...q_n) \rightarrow q \in \Delta \}) \), we learn \(s = state(\{q \in Q ~|~ t \moveStar q\})\).
+			    Because states \(s_i \in Q_d\) and rules \(f(s_1, ..., s_n) \rightarrow s \in \Delta_d\) are added by the determinization algorithm and \( s := \{ q \in Q ~|~ q_1 \in s_1,..., q_n \in s_n, f(q_1,...q_n) \rightarrow q \in \Delta \} \), we learn \(s = \{q \in Q ~|~ t \moveStar q\}\).
 				\\
 				\item
-				2.: \(s = state(\{q \in Q ~|~ t \moveStar q\}) \Rightarrow t \moveStarDet s\)\\\\
-				Considering \(s = state(\{q \in Q ~|~ f(q_1, ..., q_n) \moveStar q\})\) with state sets \(S_i\) defined as \(S_i := \{q \in Q ~|~ q_i \moveStar q\}\), by induction hypothesis for each \(i \in \{1, ..., n\}\) we know \(q_i \moveStarDet s_i, s_i = state(S_i)\).
-				Thus \( s = state(\{ q \in Q ~|~ q_1 \in S_1,..., q_n \in S_n, f(q_1,...q_n) \rightarrow q \in \Delta \}) \).\\
+				2.: \(s = \{q \in Q ~|~ t \moveStar q\} \Rightarrow t \moveStarDet s\)\\\\
+				Considering \(s = \{q \in Q ~|~ f(t_1, ..., t_n) \moveStar q\}\) with state sets \(s_i\) defined as \(s_i := \{q \in Q ~|~ t_i \moveStar q\}\), by induction hypothesis for each \(i \in \{1, ..., n\}\) we know \(t_i \moveStarDet s_i\).
+				Thus \( s = \{ q \in Q ~|~ q_1 \in s_1,..., q_n \in s_n, f(q_1, ..., q_n) \rightarrow q \in \Delta \} \).\\
 				\\
 				By the definition of \(\Delta_d\) in the determinization algorithm, \(f(s_1, ..., s_n) \in \Delta_d\) and thus \(t \moveStarDet s\).
 			\end{itemize}
@@ -359,8 +363,6 @@ It is easy to see that the algorithm produces a deterministic automaton \(A_d\) 
 }
 
 Following is an example of how a NFTA can be determinized with this algorithm.
-
-\textcolor{red}{Beispiel ohne epsilon}
 
 	\begin{example}{Running the DET algorithm}
 		\\
@@ -406,19 +408,19 @@ Following is an example of how a NFTA can be determinized with this algorithm.
 					\\
 					\(
 					\newline
-					text \rightarrow state(\{q_{text}\})
+					text \rightarrow \{q_{text}\}
 					\newline
-					empty \rightarrow state(\{q_{text}\})\)
+					empty \rightarrow \{q_{text}\}\)
 					\\
-					\(li(state(\{q_{text}\}))) \rightarrow state(\{q_{li1}, q_{li2}\})\)
+					\(li(\{q_{text}\}) \rightarrow \{q_{li1}, q_{li2}\}\)
 					\newline
-					\(li(state(\{q_{text}\})) \rightarrow state(\{q_{li1}, q_{li2}\})
+					\(li(\{q_{text}\}) \rightarrow \{q_{li1}, q_{li2}\}
 					\newline
-					ul(state(\{q_{li1}, q_{li2}\}), state(\{q_{li1}, q_{li2}\})) \rightarrow state(\{q_{ul}\})
+					ul(\{q_{li1}, q_{li2}\}, \{q_{li1}, q_{li2}\}) \rightarrow \{q_{ul}\})
 					\)
 					\\
 					\\
-				    And the set of final states is \(Q_{f_d} = \{state(\{q_{ul}\})\}\).
+				    And the set of final states is \(Q_{f_d} = \{\{q_{ul}\}\}\).
 				    \\
 				    \\
 				    As we can see, no un-deterministic behaviour can be found in this automaton anymore.
