@@ -116,13 +116,13 @@ Just like for regular word languages, it is of interest to know whether a given 
 
 \begin{definition}{ranked tree alphabet} \cite{tata-nfta}\cite{wiki-tree-automaton}
 	\\
-	A \textbf{ranked tree alphabet} \(\Sigma\) of \textbf{arity} \(n\) is a refinement of an ordinary alphabet such that each symbol \(\sigma \in \Sigma\) either has zero or exactly \(n\) arguments. Symbols with zero arguments are called \textbf{constants}.
+	A \textbf{ranked tree alphabet} \(\Sigma\) is a refinement of an ordinary alphabet such that each symbol \(\sigma \in \Sigma\) has a fixed amount of arguments. This amount can, but does not have to be the same for all \(\sigma\). We call this the \textbf{arity} of \(\sigma\). Symbols with zero arguments are called \textbf{constants}.
 \end{definition}
 \textit{Note: There also exists a definition for tree alphabets that dont have the restriction of arity. These are called \textbf{unranked tree alphabets}, but in this paper we will only take a look at the ranked case.}
 
 \begin{definition}{\(\Sigma\)-tree \cite{automata-xml}}
 	\\
-	The set of \(\Sigma\)-trees \(T_\Sigma\) over the ranked tree alphabet \(\Sigma\) of arity \(n\) is inductively defined as follows:
+	The set of \(\Sigma\)-trees \(T_\Sigma\) over the ranked tree alphabet \(\Sigma\) is inductively defined as follows:
 	\begin{center}
 		1. every \(\sigma \in \Sigma\) is a \(\Sigma\)-tree\\
 		2. \(\sigma \in \Sigma\) and \(t_1,...,t_n \in T_\Sigma \iff \sigma(t_1,...,t_n) \in T_\Sigma\) 
