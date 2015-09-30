@@ -139,6 +139,7 @@ Just like for regular word languages, it is of interest to know whether a given 
 	\end{center}	
 \end{definition}
 
+\noindent
 From that definition, we can see that \(T_\Sigma\) is already a tree-language.
 Next, we have to declare some terminology in the context of $\Sigma-trees$.
 \\
@@ -197,6 +198,7 @@ Our binary-boolean-expression NFTA can now be written as:
 	~~~~~~~~~not(q_f) \rightarrow q_t, not(q_t) \rightarrow q_f\}\)
 \end{example}
 
+\noindent
 We will now show how the above automaton processes the tree from the beginning of this chapter.
 
 \begin{example}{running a NFTA}\\
@@ -294,6 +296,7 @@ Non Deterministic Finite Tree Automata (NFTA) can be determinized just like Non 
 	is called a \textbf{Deterministic Finite Tree Automaton} (DFTA).
 \end{definition}
 
+\noindent
 Similar to the algorithm for Determinization in the word case, there exists a power set construction algorithm for determizing Tree Automata.
 
 \begin{definition}{Algorithm DET for Tree Automata \cite{tata-nfta}}\\
@@ -314,16 +317,17 @@ Similar to the algorithm for Determinization in the word case, there exists a po
 				f \rightarrow q \in \Delta \} \)
 			}
 			~\\
-			\(Q_d := Q_d \cup \{s\}\)\\
+			\(Q_d := Q_d \cup s\)\\
 			\(\Delta_d := \Delta_d \cup f(s_1,...,s_n) \rightarrow s \)
 		}
-	\(Q_{f_d} := \{ s \in Q_d ~ | ~ \{s\} \cap Q_f \neq \emptyset \}\)\\
+	\(Q_{f_d} := \{ s \in Q_d ~ | ~ s \cap Q_f \neq \emptyset \}\)\\
 	\KwResult{DFTA \(A_d = (Q_d, \Sigma, Q_{f_d}, \Delta_d) \)}
 \end{algorithm}
 \end{definition}
 
 \pagebreak
 
+\noindent
 It is easy to see that the algorithm produces a deterministic automaton \(A_d\) as we are automatically constructing meta-states for all reachable states and therefore eliminating all possible non-deterministic behaviour. However, we still have to prove \(L(A) = L(A_d)\). For this, we have to show that the meta-states \(s \in Q_d\) are "built correctly", or in formal terms:
 
 \begin{center}
@@ -362,6 +366,7 @@ It is easy to see that the algorithm produces a deterministic automaton \(A_d\) 
 	\(A = (Q, \Sigma, Q_f, \Delta)\)
 }
 
+\noindent
 Following is an example of how a NFTA can be determinized with this algorithm.
 
 	\begin{example}{Running the DET algorithm}
@@ -436,7 +441,7 @@ Just like in the word case there exists a Myhill-Nerode theorem for Finite Tree 
 \\\\
 For the definition of a \textbf{Context} it is convenient to define a \textbf{Slot} first.
 
-\begin{definition}{Slot} \textcolor{red}{(is this definition sufficient?)}\\
+\begin{definition}{Slot}\\
 	A \textbf{Slot} \(s \in S, S \cap \Sigma = \emptyset\) is a special token, that, if found in a tree \(t_1 \in T_{\Sigma \cup S}\), can be replaced by any tree \(t_1 \in T_{\Sigma \cup S}\) (\(t_2\) can contains \textbf{slots} as well).
 \end{definition}
 ~\\
@@ -496,14 +501,19 @@ Defining a Context is straightforward now.
 	\end{center}
 \end{definition}
 
+\noindent
 For the sake of easier proofs, we consider all following DFTAs to be \textbf{complete} and \textbf{reduced}.
 
 \begin{definition}{Completeness and reduction} \cite{wiki-tree-automaton}\\
-A FTA A is \textbf{complete} if there is at least one transition rule available for every possible symbol-states combination. A state \(q\) is \textbf{accessible} if there exists a tree \(t\) such that \(t \moveStar q\). A NFTA is \textbf{reduced} if all its states are accessible.
+A FTA A is \textbf{complete} if there is at least one transition rule available for every possible symbol-states combination. A state \(q\) is \textbf{accessible} if there exists a tree \(t\) such that \(t \moveStar q\). A FTA is \textbf{reduced} if all its states are accessible.
 \end{definition}
 
+\noindent
 \textit{Note: All examples for Finite Tree Automata given in this paper are supposed to be complete and reduced. However, we do not add a capturing state for all impossible symbol-state combinations for the sake of simplicity. Let \(q_c \in Q\) be the capturing state, then every transition rule that contained it state on the left side looks like \(f(..., q_c, ...) \rightarrow q_c\). This means, that once the capturing state is reached, there is no way of getting to a different state anymore.}
-\\\\
+
+\newpage
+
+\noindent
 We can now give the Myhill-Nerode theorem.
 
 \begin{theorem}{Myhill-Nerode} \cite{tata-nfta}\\
@@ -530,21 +540,24 @@ We can now give the Myhill-Nerode theorem.
 	\end{itemize}
 \end{proof}
 
-\pagebreak
+\newpage
 
+\noindent
 As a consequence of this theorem we can deduce the following:
 
 \begin{corollary} \cite{tata-nfta}\\
 	The minimum DFTA recognizing a tree language \(L\) is unique up to renaming the states and is given by \(A_{min}\) in the proof of the Myhill-Nerode Theorem.
 \end{corollary}
 
+\noindent
 This means that we can minimize a tree automaton by computing the congruence classes of the language it recognizes. But before we can put this to use, we have to prove the corollary first.
 
 \begin{proof} {~} \cite{tata-nfta}\\
-	Assume that \(L\) is recognized by some DFTA \(A = (Q, \Sigma, Q_f, \delta)\). Then the relation \(\equiv_A\) is a refinement of \(\equiv_L\) with \(index(\equiv_A) \geq index(\equiv_L)\), thus \(|Q| \geq |Q_{min}|\). We know that \(A\) is reduced (all states are accesible), because otherwise a state could be removed contradicting to the definition of \(\equiv_A\). Let \(q \in Q\) and \(u \in T_\Sigma\), such that \(\delta(u) = q\). Then the state \(q\) can be consistently identified with the state \(\delta_{min}(u)\), since \(\delta\) is a refinement of \(\delta_{min}\) and we can see that every state \(q \in Q\) has a corresponding state \(q_{min} \in Q_{min}\).
+	Assume that \(L\) is recognized by some DFTA \(A = (Q, \Sigma, Q_f, \delta)\). Then the relation \(\equiv_A\) is a refinement of \(\equiv_L\) with \(index(\equiv_A) \geq index(\equiv_L)\), thus \(|Q| \geq |Q_{min}|\). We know that \(A\) is reduced (all states are accessible), because otherwise a state could be removed contradicting to the definition of \(\equiv_A\). Let \(q \in Q\) and \(u \in T_\Sigma\), such that \(\delta(u) = q\). Then the state \(q\) can be consistently identified with the state \(\delta_{min}(u)\), since \(\delta\) is a refinement of \(\delta_{min}\) and we can see that every state \(q \in Q\) has a corresponding state \(q_{min} \in Q_{min}\).
 	\qed
 \end{proof}
 
+\noindent
 By using this Corollary and the construction given in the Myhill-Nerode theorem we can deduce an algorithm to minimize Deterministic Finite Tree Automata:
 
 \begin{definition}{Algorithm MIN for Tree Automata} \cite{martens-uni-dortmund-lecture02}\\
@@ -575,7 +588,7 @@ By using this Corollary and the construction given in the Myhill-Nerode theorem 
 
 \pagebreak
 
-
+\noindent
 While we are not giving a complete proof for this algorithm, we can at least go over why it is correct for a given language \(L = L(A)\) and the automaton \(A = (Q, \Sigma, Q_f, \Delta) \) \cite{tata-nfta}:
 \begin{itemize}
 	\item In the while loop we are marking all tuples \(p_1, p_2\) as distinguishable when they are added to the relation
@@ -625,6 +638,7 @@ While we should be able to fix this by hand, we are now using the MIN algorithm 
 
 \pagebreak
 
+\noindent
 As predicted \(q_{text}\) and \(q_{text2}\) have to be merged in order to minimize \(A\). The resulting automaton is:
 \\
 \\
